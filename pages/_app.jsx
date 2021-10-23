@@ -2,16 +2,7 @@
 
 import "../styles/globals.css";
 
-import Home from "./Home";
-import Navbar from "./Navbar";
-
-function MyApp(props) {
-  return (
-    <>
-      <Navbar />
-      <Home />
-    </>
-  );
+function App({ Component, pageProps }) {
+	return <Component {...pageProps} />;
 }
-
-export default MyApp;
+export default App;

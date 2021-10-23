@@ -1,6 +1,12 @@
 import Head from "next/head";
-import MyApp from "./_app";
+import Home from "../Components/Home";
+import Navbar from "../Components/Navbar";
 
-export default function Home() {
-	return <MyApp />;
+function MyApp(props) {
+	return (
+		<>
+			<Home />
+		</>
+	);
 }
+export default MyApp;
