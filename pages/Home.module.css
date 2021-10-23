@@ -1,0 +1,10 @@
+.borders:before {
+  content: "";
+  position: absolute;
+  z-index: 10;
+  top: 5px;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
+  border: 5px solid #ffea00;
+}
