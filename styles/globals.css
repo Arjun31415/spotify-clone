@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* spotifyPatternHomeLarge:"url(https://www-growth.scdn.co/static/home/bursts.svg)",
+spotifyPatternHomeTablet:"url(https://www-growth.scdn.co/static/home/bursts-tablet.svg)",
+spotifyPatternHomeMobile:"url(https://www-growth.scdn.co/static/home/bursts-mobile.svg)", */
+
+@media (min-width: 640px) {
+  .spotifyBg {
+    background-image: url("https://www-growth.scdn.co/static/home/bursts-mobile.svg");
+  }
+}
+@media (min-width: 768px) {
+  .spotifyBg {
+    background-image: url("https://www-growth.scdn.co/static/home/bursts-mobile.svg");
+  }
+}
+@media (min-width: 1024px) {
+  .spotifyBg {
+    background-image: url("https://www-growth.scdn.co/static/home/bursts-tablet.svg");
+  }
+}
+@media (min-width: 1280px) {
+  .spotifyBg {
+    background-image: url("https://www-growth.scdn.co/static/home/bursts.svg");
+  }
+}
+@media (min-width: 1536px) {
+  .spotifyBg {
+    background-image: url("https://www-growth.scdn.co/static/home/bursts.svg");
+  }
+}
