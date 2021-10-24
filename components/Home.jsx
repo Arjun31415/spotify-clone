@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+import Footer from "./Footer";
 import Navbar from "./Navbar";
 
 function Home() {
@@ -28,13 +29,16 @@ function Home() {
 					  px-5 py-3 hover:bg-spotifyLightGreen1 hover:scale-105 \
 					  font-semibold rounded-full active:bg-spotifyLightGreen2 \
 					   active:border-white active:border-4 border-4 " +
-						(clicked ? "border-white" : "border-transparent")
+						(clicked === true
+							? "border-white"
+							: "border-transparent")
 					}
 					onClick={() => setClicked(true)}
 				>
 					GET SPOTIFY FREE
 				</button>
 			</div>
+			<Footer />
 		</>
 	);
 }

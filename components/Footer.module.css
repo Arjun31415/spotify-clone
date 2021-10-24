@@ -1,0 +1,9 @@
+.small {
+    color: #919496;
+}
+
+.navList {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
