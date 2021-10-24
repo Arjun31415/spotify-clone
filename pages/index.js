@@ -1,6 +1,6 @@
 import Head from "next/head";
-import Home from "../Components/Home";
-import Navbar from "../Components/Navbar";
+import Home from "../components/Home";
+import Navbar from "../components/Navbar";
 
 function MyApp(props) {
 	return (
