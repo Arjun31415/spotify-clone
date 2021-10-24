@@ -8,8 +8,8 @@ const MyBrand = React.forwardRef(function myBrand(props, ref) {
 			xmlns="http://www.w3.org/2000/svg"
 			preserveAspectRatio="xMidYMin meet"
 			className="fill-current text-white cursor-pointer hover:text-spotifyGreen"
-			width={props.props.width}
-			height={props.props.height}
+			width="10vw"
+			height="6vh"
 			ref={ref}
 		>
 			<g fillRule="evenodd">
