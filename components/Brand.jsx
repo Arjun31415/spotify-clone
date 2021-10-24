@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
 
-const MyBrand = React.forwardRef(function (props, ref) {
+const MyBrand = React.forwardRef(function myBrand(props, ref) {
 	return (
 		<svg
 			viewBox="0 0 63 20"
