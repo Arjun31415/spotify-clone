@@ -1,7 +1,10 @@
+import React, { useState } from "react";
+
 import Image from "next/image";
-import React from "react";
 import styles from "./Premium.module.css";
+
 function Premium() {
+	const [clicked, setClicked] = useState(false);
 	return (
 		<div className="font-sans">
 			{/* Rupee symbol */}
@@ -18,7 +21,18 @@ function Premium() {
 							more .
 						</p>
 						<span className="flex p-5">
-							<button className="mr-1.5">GET PREMIUM</button>
+							<button
+								className={
+									"mt-14 rounded-full" +
+									(clicked === true
+										? "border-white"
+										: "border-transparent")
+								}
+								onClick={() => setClicked(true)}
+							>
+								GET PREMIUM
+							</button>
+							<button className="mr-1.5"></button>
 							<button className="ml-1.5">VIEW PLANS </button>
 						</span>
 						<p className="items-center">
