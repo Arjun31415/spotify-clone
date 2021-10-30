@@ -1,0 +1,135 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+
+.flexItemLeft {
+    flex: 70%;
+    margin-top: 50px;
+    margin-bottom: 100px;
+    display: flex;
+    justify-content: center;
+}
+
+.flexItemRight {
+    flex: 30%;
+    margin-top: 50px;
+    margin-bottom: 100px;
+    display: flex;
+    justify-content: center;
+}
+
+.flexItemLeft>h2 {
+    font-size: 40px;
+    font-weight: 900;
+}
+
+.flexItemLeft>p {
+    font-family: Circular !important;
+}
+
+.flexItemLeft>p>small {
+    font-family: Circular !important;
+}
+
+.flexItemLeft>p:first-of-type {
+    font-weight: 400;
+}
+
+
+@media (max-width: 1536px) {
+
+    .flexItemLeft {
+        flex: 70%;
+        margin-top: 50px;
+        margin-bottom: 100px;
+        display: flex;
+        justify-content: center;
+
+    }
+
+    .flexItemRight {
+        flex: 30%;
+        margin-top: 50px;
+        margin-bottom: 100px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .flexItemLeft>h2 {
+        font-size: 40px;
+    }
+}
+
+@media (max-width: 1280px) {
+
+    .flexItemLeft {
+        flex: 70%;
+        margin-top: 50px;
+        margin-bottom: 100px;
+        margin-left: auto;
+        margin-right: auto;
+        width: 65vh;
+        display: flex;
+        justify-content: center;
+
+    }
+
+    .flexItemRight {
+        flex: 30%;
+        margin-top: 50px;
+        margin-left: 20px;
+        margin-bottom: 100px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .flexItemLeft>h2 {
+        font-size: 38px;
+    }
+
+}
+
+@media (max-width: 1048px) {
+
+    .flexItemRight,
+    .flexItemLeft {
+        flex: 100%;
+        margin-left: 20px;
+    }
+
+    .flexItemRight {
+        margin-top: 50px;
+        margin-bottom: 100px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .flexItemLeft>h2 {
+        font-size: 4vw;
+    }
+
+}
+
+@media (max-width: 800px) {
+
+    .flexItemRight,
+    .flexItemLeft {
+        flex: 100%;
+        margin-left: 20px;
+    }
+
+    .flexItemRight {
+        margin-top: 50px;
+        margin-bottom: 100px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .flexItemLeft>h2 {
+        font-size: 5vw;
+    }
+
+}

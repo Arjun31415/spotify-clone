@@ -10,7 +10,13 @@ module.exports = {
 	darkMode: false, // or 'media' or 'class'
 	theme: {
 		fontFamily: {
-			sans: ['"spotify-circular"', "Helvetica", "Arial", "sans-serif"],
+			sans: [
+				"Circular",
+				"spotify-circular",
+				"Helvetica",
+				"Arial",
+				"sans-serif",
+			],
 		},
 		extend: {
 			backgroundImage: {},
@@ -19,6 +25,7 @@ module.exports = {
 				spotifyGreen: "#1ed760",
 				spotifyLightGreen1: "#2de26d",
 				spotifyLightGreen2: "#43e57d",
+				paleYellow: "#ffc864",
 			},
 			backgroundSize: {
 				170: "170%",
