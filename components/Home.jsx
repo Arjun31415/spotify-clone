@@ -14,7 +14,7 @@ function Home() {
 				flex flex-col items-center justify-center min-h-screen py-2 p-5"
 			>
 				<h1
-					className="font-sans text-10xl font-medium text-center max-w-2xl tracking-tighter
+					className="font-sans text-10xl font-black text-center max-w-2xl tracking-tighter
 				  transform-gpu translate-x-7 leading-none"
 					style={{ textIndent: "-2.5em" }}
 				>
