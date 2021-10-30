@@ -27,18 +27,18 @@
 }
 
 .flexItemLeft>p {
-    font-family: Circular !important;
+    font-family: spotify-circular !important;
 }
 
 .flexItemLeft>p>small {
-    font-family: Circular !important;
+    font-family: spotify-circular !important;
 }
 
 .flexItemLeft>p:first-of-type {
     font-weight: 400;
     margin-top: 2rem;
     font-size: 1.3rem;
-    font-family: Circular !important;
+    font-family: spotify-circular !important;
 
 }
 
