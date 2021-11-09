@@ -1,4 +1,4 @@
-import Brand from "./Brand";
+import Brand from "./figures/Brand";
 import Link from "next/link";
 import React from "react";
 

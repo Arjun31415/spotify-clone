@@ -42,3 +42,13 @@
     outline-style: solid;
     border-color: black;
 }
+
+.crossMark {
+    stroke-width: 1pt;
+    height: 1em;
+    width: 1em;
+    vertical-align: -0.175em;
+    margin-right: 4px;
+    display: inline;
+    color: inherit;
+}

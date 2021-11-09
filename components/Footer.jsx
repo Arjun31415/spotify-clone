@@ -1,4 +1,4 @@
-import Brand from "./Brand";
+import Brand from "./figures/Brand";
 import React from "react";
 import styles from "./Footer.module.css";
 

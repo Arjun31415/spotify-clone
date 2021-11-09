@@ -1,4 +1,4 @@
-import Brand from "./Brand";
+import Brand from "./figures/Brand";
 import React from "react";
 import Script from "next/script";
 import SignupForm from "./SignupForm";
