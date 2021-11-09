@@ -17,7 +17,7 @@ export default async function handler(req, res) {
 		// If email or captcha are missing return an error
 		if (!captcha) {
 			return res.status(422).json({
-				message: "Unproccesable request, please provide the required fields",
+				message: "Unprocessable request, please provide the required fields",
 			});
 		}
 
@@ -34,7 +34,7 @@ export default async function handler(req, res) {
 			);
 			const captchaValidation = await response.json();
 			/**
-       * The structure of response from the veirfy API is
+       * The structure of response from the verify API is
        * {
        *  "success": true|false,
        *  "challenge_ts": timestamp,  // timestamp of the challenge load (ISO format yyyy-MM-dd'T'HH:mm:ssZZ)
@@ -51,7 +51,7 @@ export default async function handler(req, res) {
 			}
 
 			return res.status(422).json({
-				message: "Unproccesable request, Invalid captcha code",
+				message: "Unprocessable request, Invalid captcha code",
 			});
 		} catch (error) {
 			console.log(error);

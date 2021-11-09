@@ -5,6 +5,7 @@ import DatePicker, {
 } from "@amir04lm26/react-modern-calendar-date-picker";
 import React, { useState } from "react";
 
+import Link from "next/link";
 import ReCAPTCHA from "react-google-recaptcha";
 
 React.useLayoutEffect = React.useEffect;
@@ -18,7 +19,9 @@ function SignupForm({ styles }) {
 	const onSubmit = (e) => {
 		e.preventDefault();
 		const recaptchaValue = recaptchaRef.current.getValue();
-		this.props.onSubmit(recaptchaValue);
+		console.log(recaptchaValue);
+		// TODO: do something on submit like storing the user to firebase
+		// this.props.onSubmit(recaptchaValue);
 	};
 
 	const onReCAPTCHAChange = async (captchaCode) => {
@@ -154,13 +157,20 @@ function SignupForm({ styles }) {
 			<div className="flex justify-center mt-3.5">
 				<button
 					type="submit"
-					onSubmit={onSubmit}
+					onClick={onSubmit}
 					className="bg-spotifyGreen rounded-full py-5 px-12 w-auto font-bold"
 				>
 					Sign up
 				</button>
 			</div>
-			<p className="flex justify-center mt-10">Have an account? Log in.</p>
+			<p className="flex justify-center mt-10">
+				Have an account? &nbsp;
+				<Link href="/login">
+					<a className="text-spotifyGreen underline hover:text-spotifyLightGreen2  ">
+						Log in.{" "}
+					</a>
+				</Link>
+			</p>
 		</form>
 	);
 }
