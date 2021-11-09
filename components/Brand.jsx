@@ -12,8 +12,8 @@ const MyBrand = React.forwardRef(function myBrand({ props }, ref) {
 				" " +
 				(props.textColor ? props.textColor : ` text-white`)
 			}
-			width="10vw"
-			height="6vh"
+			width={props.width}
+			height={props.height}
 			ref={ref}
 		>
 			<g fillRule="evenodd">
