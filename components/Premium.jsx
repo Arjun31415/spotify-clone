@@ -55,12 +55,12 @@ function Premium() {
 								className="flex"
 								style={{ maxWidth: "300px" }}
 							>
-								Terms and conditions apply. Open only to users
-								who aren&apos;t subscribed to a recurring
+								{`Terms and conditions apply. Open only to users
+								who aren't subscribed to a recurring
 								Premium plan and who haven&apos;t purchased
 								either a 12-month one-time Premium plan at a
 								promotional price or a 6-month one-time Premium
-								plan offering 3 additional months free.{" "}
+								plan offering 3 additional months free.`}
 							</small>
 						</p>
 					</div>
