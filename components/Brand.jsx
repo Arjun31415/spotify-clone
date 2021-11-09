@@ -1,13 +1,17 @@
 import Link from "next/link";
 import React from "react";
 
-const MyBrand = React.forwardRef(function myBrand(props, ref) {
+const MyBrand = React.forwardRef(function myBrand({ props }, ref) {
 	return (
 		<svg
 			viewBox="0 0 63 20"
 			xmlns="http://www.w3.org/2000/svg"
 			preserveAspectRatio="xMidYMin meet"
-			className="fill-current text-white cursor-pointer hover:text-spotifyGreen"
+			className={
+				`fill-current cursor-pointer hover:text-spotifyGreen ` +
+				" " +
+				(props.textColor ? props.textColor : ` text-white`)
+			}
 			width="10vw"
 			height="6vh"
 			ref={ref}
