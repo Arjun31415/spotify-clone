@@ -9,3 +9,36 @@
 .mt4 {
     margin-top: 4rem;
 }
+
+.divider {
+    display: table;
+    letter-spacing: 2px;
+    line-height: 24px;
+    margin: 0px auto 1em;
+    color: rgb(127, 127, 127);
+    text-align: center;
+    position: relative;
+    width: 85%;
+    margin-top: 2em;
+}
+
+.divider::before,
+.divider::after {
+
+    border-top: 1px solid rgb(204, 204, 204);
+    content: "";
+    display: table-cell;
+    position: relative;
+    top: 0.8em;
+    width: 42%;
+
+}
+
+#email:focus-visible,
+#confirmEmail:focus-visible,
+#password:focus-visible,
+#profileName:focus-visible {
+    outline-color: black;
+    outline-style: solid;
+    border-color: black;
+}
