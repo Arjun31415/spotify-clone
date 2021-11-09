@@ -30,9 +30,7 @@ function Home() {
 					  font-sans font-semibold rounded-full \
 					   active:bg-spotifyLightGreen2 \
 					   active:border-white active:border-4 border-4 " +
-						(clicked === true
-							? "border-white"
-							: "border-transparent")
+						(clicked === true ? "border-white" : "border-transparent")
 					}
 					onClick={() => setClicked(true)}
 				>
