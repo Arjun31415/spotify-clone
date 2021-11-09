@@ -4,7 +4,9 @@ import Image from "next/image";
 import styles from "./Premium.module.css";
 
 function Premium() {
-	const [clicked, setClicked] = useState(false);
+	const [clicked1, setClicked1] = useState(false);
+	const [clicked2, setClicked2] = useState(false);
+
 	return (
 		<div className="font-sans">
 			{/* Rupee symbol */}
@@ -20,20 +22,33 @@ function Premium() {
 							Enjoy ad-free music listening, offline playback, and
 							more .
 						</p>
-						<span className="flex p-5">
+						<span className="flex py-5 justify-start">
 							<button
 								className={
-									"mt-14 rounded-full" +
-									(clicked === true
+									`mt-1 mr-3  rounded-full bg-black text-white 
+									px-5 py-2 active:border-white 
+									active:border-4 border-4 hover:scale-105 ` +
+									(clicked1 === true
 										? "border-white"
 										: "border-transparent")
 								}
-								onClick={() => setClicked(true)}
+								onClick={() => setClicked1(true)}
 							>
 								GET PREMIUM
 							</button>
-							<button className="mr-1.5"></button>
-							<button className="ml-1.5">VIEW PLANS </button>
+							<button
+								className={
+									`mt-1 ml-3 rounded-full bg-black text-white 
+									px-5 py-2 active:border-white 
+									active:border-4 border-4 hover:scale-105 ` +
+									(clicked2 === true
+										? "border-white"
+										: "border-transparent")
+								}
+								onClick={() => setClicked2(true)}
+							>
+								VIEW PLANS{" "}
+							</button>
 						</span>
 						<p className="items-center">
 							<small
@@ -49,12 +64,15 @@ function Premium() {
 							</small>
 						</p>
 					</div>
-					<div className={`${styles.flexItemRight}`}>
+					<div
+						className={`${styles.flexItemRight}`}
+						style={{ width: "450px" }}
+					>
 						<Image
 							src="https://i.scdn.co/image/ab678e040000ed3a428143ebcee76dfb7eb59637"
 							alt="img"
-							height="320px"
-							width="320px"
+							height={320}
+							width={320}
 						/>
 					</div>
 				</div>
