@@ -2,14 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* @font-face {
-  font-family: "Circular Spotify Tx T Black";
-  src: url("//db.onlinewebfonts.com/t/01173b246d9d9ea808ea75a26b3b61bb.eot");
-  src: url("//db.onlinewebfonts.com/t/01173b246d9d9ea808ea75a26b3b61bb.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/01173b246d9d9ea808ea75a26b3b61bb.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/01173b246d9d9ea808ea75a26b3b61bb.woff") format("woff"), url("//db.onlinewebfonts.com/t/01173b246d9d9ea808ea75a26b3b61bb.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/01173b246d9d9ea808ea75a26b3b61bb.svg#Circular Spotify Tx T Black") format("svg");
-} */
-/* @font-face { font-family: "Circular Spotify Tx T Black"; src: url("https://encore.scdn.co/1.2.3/CircularSpotify-UI-Latin-OS2v3-Bold.woff2") format("woff2"); font-weight: 500; }
-
-@font-face { font-family: "Circular Spotify Tx T Black"; src: url("https://encore.scdn.co/1.2.3/CircularSpotify-UI-Latin-OS2v3-Book.woff2") format("woff2"); font-weight: 400; } */
 
 @font-face {
   font-family: spotify-circular;
@@ -71,4 +63,9 @@ spotifyPatternHomeMobile:"url(https://www-growth.scdn.co/static/home/bursts-mobi
   .spotifyBg {
     background-image: url("https://www-growth.scdn.co/static/home/bursts.svg");
   }
+}
+
+#__next {
+  width: 100vw;
+  height: 100vh;
 }

@@ -2,9 +2,9 @@ import Brand from "./Brand";
 import React from "react";
 import styles from "./Footer.module.css";
 
-function Footer() {
+function Footer({ classes }) {
 	return (
-		<div className="bg-black p-5 space-x-7">
+		<div className={`bg-black p-5 space-x-7 w-full ${classes}`}>
 			<div className="flex flex-row">
 				<div className="justify-center flex flex-auto mt-16 ">
 					<Brand height="6vh" width="10vw" />
@@ -17,12 +17,8 @@ function Footer() {
 						<li>
 							<small className={`${styles.small}`}>Company</small>
 						</li>
-						<li className="hover:text-spotifyGreen cursor-pointer">
-							About
-						</li>
-						<li className="hover:text-spotifyGreen cursor-pointer">
-							Jobs
-						</li>
+						<li className="hover:text-spotifyGreen cursor-pointer">About</li>
+						<li className="hover:text-spotifyGreen cursor-pointer">Jobs</li>
 						<li className="hover:text-spotifyGreen cursor-pointer">
 							For the Record
 						</li>
@@ -31,9 +27,7 @@ function Footer() {
 						className={`text-white font-bold text-lg flex flex-col mr-auto mt-16 list-none ${styles.navList}`}
 					>
 						<li>
-							<small className={`${styles.small}`}>
-								Communities
-							</small>
+							<small className={`${styles.small}`}>Communities</small>
 						</li>
 						<li className="hover:text-spotifyGreen cursor-pointer">
 							For the Artists
@@ -47,22 +41,15 @@ function Footer() {
 						<li className="hover:text-spotifyGreen cursor-pointer">
 							Investors
 						</li>
-						<li className="hover:text-spotifyGreen cursor-pointer">
-							Vendors
-						</li>
+						<li className="hover:text-spotifyGreen cursor-pointer">Vendors</li>
 					</ul>
 					<ul
 						className={`text-white font-bold text-lg flex flex-col mr-auto mt-16 list-none ${styles.navList}`}
 					>
 						<li>
-							<small className={`${styles.small}`}>
-								USEFUL LINKS
-							</small>
+							<small className={`${styles.small}`}>USEFUL LINKS</small>
 						</li>
-						<li className="hover:text-spotifyGreen cursor-pointer">
-							{" "}
-							Support
-						</li>
+						<li className="hover:text-spotifyGreen cursor-pointer"> Support</li>
 						<li className="hover:text-spotifyGreen cursor-pointer">
 							Web Player{" "}
 						</li>

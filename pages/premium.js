@@ -7,7 +7,7 @@ export default function PremiumPage() {
 		<>
 			<Navbar />
 			<Premium />
-			<Footer />
+			<Footer classes={`fixed inset-x-0 bottom-0`} />
 		</>
 	);
 }
