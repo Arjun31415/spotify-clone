@@ -5,16 +5,62 @@ import DatePicker, {
 } from "@amir04lm26/react-modern-calendar-date-picker";
 import React, { useState } from "react";
 
+import ReCAPTCHA from "react-google-recaptcha";
+
 React.useLayoutEffect = React.useEffect;
 function SignupForm({ styles }) {
+	const recaptchaRef = React.createRef();
 	const [email, setEmail] = useState("");
 	const [confirmEmail, setConfirmEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [profileName, setProfile] = useState("");
-	const [gender, setGender] = useState(null);
 	const [dob, setDOB] = useState(null);
+	const onSubmit = (e) => {
+		e.preventDefault();
+		const recaptchaValue = recaptchaRef.current.getValue();
+		this.props.onSubmit(recaptchaValue);
+	};
+
+	const onReCAPTCHAChange = async (captchaCode) => {
+		// If the reCAPTCHA code is null or undefined indicating that
+		// the reCAPTCHA was expired then return early
+		if (!captchaCode) {
+			recaptchaRef.current.reset();
+			return;
+		}
+		// Else reCAPTCHA was executed successfully so proceed with the
+		// alert
+		try {
+			const response = await fetch("/api/verifyCaptcha", {
+				method: "POST",
+				body: JSON.stringify({ captchaCode }),
+				headers: {
+					"Content-Type": "application/json",
+				},
+			});
+			if (response.ok) {
+				// If the response is ok than show the success alert
+				// alert("Email registered successfully");
+				console.log("Recaptcha successful");
+			} else {
+				// Else throw an error with the message returned
+				// from the API
+				recaptchaRef.current.reset();
+
+				const error = await response.json();
+				throw new Error(error.message);
+			}
+		} catch (error) {
+			alert(
+				error?.message ||
+					"Something went wrong. Please contact admin for bug report "
+			);
+		} finally {
+			// idk man
+		}
+	};
 	return (
-		<form action="POST" className="flex flex-col">
+		<form className="flex flex-col" method="post">
 			{/* For email */}
 			<div className="flex flex-col">
 				<label htmlFor={styles.email} className="font-semibold">
@@ -79,14 +125,14 @@ function SignupForm({ styles }) {
 					className={`border-solid border-gray-500 border-2 
                             rounded h-10 mt-3.5 p-5 
                             `}
-					value={confirmEmail}
+					value={profileName}
 					placeholder="Enter a profile name."
-					onChange={(e) => setConfirmEmail(e.target.value)}
+					onChange={(e) => setProfile(e.target.value)}
 				/>
 			</div>
 			{/* For date of birth */}
 			<div className="flex flex-col">
-				<label htmlFor={styles.dob} className="font-semibold mt-6 mb-4">
+				<label htmlFor={styles.dob} className="font-semibold mt-6 mb-5">
 					{"What's your date of Birth?"}
 				</label>
 				<DatePicker
@@ -97,6 +143,24 @@ function SignupForm({ styles }) {
 					shouldHighlightWeekends={false}
 				/>
 			</div>
+
+			<div className="mt-12 mb-5">
+				<ReCAPTCHA
+					ref={recaptchaRef}
+					sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
+					onChange={onReCAPTCHAChange}
+				/>
+			</div>
+			<div className="flex justify-center mt-3.5">
+				<button
+					type="submit"
+					onSubmit={onSubmit}
+					className="bg-spotifyGreen rounded-full py-5 px-12 w-auto font-bold"
+				>
+					Sign up
+				</button>
+			</div>
+			<p className="flex justify-center mt-10">Have an account? Log in.</p>
 		</form>
 	);
 }
