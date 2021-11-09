@@ -1,8 +1,9 @@
 import "@amir04lm26/react-modern-calendar-date-picker/lib/DatePicker.css";
 
+import DatePicker, {
+	utils,
+} from "@amir04lm26/react-modern-calendar-date-picker";
 import React, { useState } from "react";
-
-import DatePicker from "@amir04lm26/react-modern-calendar-date-picker";
 
 React.useLayoutEffect = React.useEffect;
 function SignupForm({ styles }) {
@@ -92,7 +93,8 @@ function SignupForm({ styles }) {
 					value={dob}
 					onChange={setDOB}
 					inputPlaceholder="Select Birth date"
-					shouldHighlightWeekends
+					maximumDate={utils().getToday()}
+					shouldHighlightWeekends={false}
 				/>
 			</div>
 		</form>
