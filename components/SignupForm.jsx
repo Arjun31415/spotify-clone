@@ -28,19 +28,24 @@ function SignupForm({ styles }) {
 	const [password, setPassword] = useState("");
 	const [profileName, setProfile] = useState("");
 	const [dob, setDOB] = useState(null);
-	// For errors
-	const emailErrorElement = document.getElementById("emailError");
-	const passwordErrorElement = document.getElementById("passwordError");
-	const confirmEmailErrorElement = document.getElementById("confirmEmailError");
-	const yearErrorElement = document.getElementById("yearError");
 
-	const onSubmit = (e) => {
-		e.preventDefault();
-		const recaptchaValue = recaptchaRef.current.getValue();
-		console.log(recaptchaValue);
-		// TODO: do something on submit like storing the user to firebase
-		// this.props.onSubmit(recaptchaValue);
-	};
+	// For errors
+
+	// FIXME: Refactoring required. use useEffect
+	let emailErrorElement,
+		passwordErrorElement,
+		confirmEmailErrorElement,
+		yearErrorElement,
+		captchaErrorElement;
+	if (process.browser) {
+		emailErrorElement = document.getElementById("emailError");
+		passwordErrorElement = document.getElementById("passwordError");
+		confirmEmailErrorElement = document.getElementById("confirmEmailError");
+		yearErrorElement = document.getElementById("yearError");
+		captchaErrorElement = document.getElementById("captchaError");
+	}
+
+
 	function signIn(e) {
 		e.preventDefault();
 		signInWithEmailAndPassword(auth, email, password)
@@ -62,7 +67,13 @@ function SignupForm({ styles }) {
 
 	function signUp(e) {
 		e.preventDefault();
+		const recaptchaValue = recaptchaRef.current.getValue();
+		console.log(recaptchaValue);
 		let anyError = false;
+		if (!recaptchaValue) {
+			captchaErrorElement.hidden = false;
+			anyError = true;
+		} else captchaErrorElement.hidden = true;
 		// check for null or empty string first
 		if (!dob) {
 			yearErrorElement.hidden = false;
@@ -260,18 +271,24 @@ function SignupForm({ styles }) {
 				{"Sorry, you don't meet the age requirements"}
 			</div>
 
-			<div className="mt-12 mb-5">
+			<div className="mt-12 mb-2">
 				<ReCAPTCHA
 					ref={recaptchaRef}
 					sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
 					onChange={onReCAPTCHAChange}
 				/>
 			</div>
+			{/* captchaError */}
+			<div id="captchaError" className="mt-2 text-red-500" hidden={true}>
+				<CrossMark classes={styles.crossMark} />
+				{"Confirm you are not a robot"}
+			</div>
+			{/* SignUp */}
 			<div className="flex justify-center mt-3.5">
 				<button
 					type="submit"
 					onClick={signUp}
-					className="bg-spotifyGreen rounded-full py-5 px-12 w-auto font-bold"
+					className="bg-spotifyGreen rounded-full py-5 px-12 w-auto font-bold mt-3"
 				>
 					Sign up
 				</button>
