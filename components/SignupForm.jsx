@@ -1,9 +1,10 @@
 import "@amir04lm26/react-modern-calendar-date-picker/lib/DatePicker.css";
+import {} from "react";
 
 import DatePicker, {
 	utils,
 } from "@amir04lm26/react-modern-calendar-date-picker";
-import React, { useState } from "react";
+import React, { createRef, useEffect, useRef, useState } from "react";
 import {
 	createUserWithEmailAndPassword,
 	signInWithEmailAndPassword,
@@ -17,34 +18,39 @@ import { auth } from "../lib/firebase";
 import calculate_age from "../utils/AgeCalc";
 import { useRouter } from "next/router";
 
-React.useLayoutEffect = React.useEffect;
-
 function SignupForm({ styles }) {
 	const router = useRouter();
 
-	const recaptchaRef = React.createRef();
+	const recaptchaRef = createRef();
+	// for form control
 	const [email, setEmail] = useState("");
 	const [confirmEmail, setConfirmEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [profileName, setProfile] = useState("");
 	const [dob, setDOB] = useState(null);
 
-	// For errors
+	// TODO: For errors, need more of them
 
-	// FIXME: Refactoring required. use useEffect
-	let emailErrorElement,
-		passwordErrorElement,
-		confirmEmailErrorElement,
-		yearErrorElement,
-		captchaErrorElement;
+	const [someError, setSomeError] = useState(-1);
+	let captchaErrorElement;
+
 	if (process.browser) {
-		emailErrorElement = document.getElementById("emailError");
-		passwordErrorElement = document.getElementById("passwordError");
-		confirmEmailErrorElement = document.getElementById("confirmEmailError");
-		yearErrorElement = document.getElementById("yearError");
 		captchaErrorElement = document.getElementById("captchaError");
 	}
-
+	const [emailError, setEmailError] = useState({ value: false, message: "" });
+	const [passwordError, setPasswordError] = useState({
+		value: false,
+		message: "",
+	});
+	const [confirmEmailError, setConfirmEmailError] = useState({
+		value: false,
+		message: "",
+	});
+	const [yearError, setYearError] = useState({ value: false, message: "" });
+	const [captchaError, setCaptchaError] = useState({
+		value: false,
+		message: "",
+	});
 
 	function signIn(e) {
 		e.preventDefault();
@@ -64,6 +70,71 @@ function SignupForm({ styles }) {
 				console.error({ code: errorCode, message: errorMessage });
 			});
 	}
+	const isFirstRun = useRef(new Array(7).fill(true));
+	// for email error
+	useEffect(() => {
+		if (isFirstRun.current[0]) {
+			isFirstRun.current[0] = false;
+			return;
+		}
+		if (!email || email === "")
+			setEmailError({ value: true, message: "You need to enter your email" });
+		return () => {
+			setEmailError({ value: false, message: "" });
+		};
+	}, [email, someError]);
+
+	// Confirm Email Error
+	useEffect(() => {
+		if (isFirstRun.current[1]) {
+			isFirstRun.current[1] = false;
+			return;
+		}
+		console.log("confirmEmailError", confirmEmail);
+		if (!confirmEmail || confirmEmail === "") {
+			console.log("confirm");
+			setConfirmEmailError({
+				value: true,
+				message: "You need to confirm your email.",
+			});
+			// console.log("confirmEmailError", confirmEmailError);
+		} else if (confirmEmail !== email) {
+			setConfirmEmailError({
+				value: true,
+				message: "The email addresses don't match.",
+			});
+		}
+		return () => {
+			setConfirmEmailError({ value: false, message: "" });
+		};
+	}, [confirmEmail, someError, email]);
+	// Password error
+	useEffect(() => {
+		if (isFirstRun.current[2]) {
+			isFirstRun.current[2] = false;
+			return;
+		}
+		if (!password || password === "") {
+			console.log("running effect");
+			setPasswordError({ value: true, message: "Password cannot be empty" });
+		}
+		return () => {
+			setPasswordError({ value: false, message: "" });
+		};
+	}, [password, someError]);
+	// DOB error
+	useEffect(() => {
+		if (isFirstRun.current[3]) {
+			isFirstRun.current[3] = false;
+			return;
+		}
+		if (!confirmEmail || confirmEmail !== email) {
+			setConfirmEmailError(true);
+		}
+		return () => {
+			setConfirmEmailError(false);
+		};
+	}, [confirmEmail, someError, email]);
 
 	function signUp(e) {
 		e.preventDefault();
@@ -75,43 +146,45 @@ function SignupForm({ styles }) {
 			anyError = true;
 		} else captchaErrorElement.hidden = true;
 		// check for null or empty string first
-		if (!dob) {
-			yearErrorElement.hidden = false;
-			yearErrorElement.innerText = "Please enter your date of birth.";
-			anyError = true;
-		}
+		// if (!dob) {
+		// 	yearErrorElement.hidden = false;
+		// 	yearErrorElement.innerText = "Please enter your date of birth.";
+		// 	anyError = true;
+		// }
 
-		if (email === null || email === "") {
-			emailErrorElement.hidden = false;
-			emailErrorElement.innerText = "Please enter and email";
-			anyError = true;
-		} else {
-			emailErrorElement.hidden = true;
-		}
-		if (password === null || password === "" || password.length < 6) {
-			passwordErrorElement.hidden = false;
-			passwordErrorElement.innerText =
-				"Password cannot be empty and must be longer than 6 characters.";
-			anyError = true;
-		} else {
-			passwordErrorElement.hidden = true;
-		}
-		if (email !== confirmEmail) {
-			confirmEmailErrorElement.hidden = false;
-			confirmEmailErrorElement.innerText =
-				"The email addresses in the two fields do not match.";
-			anyError = true;
-		}
+		// if (email === null || email === "") {
+		// 	emailErrorElement.hidden = false;
+		// 	emailErrorElement.innerText = "Please enter and email";
+		// 	anyError = true;
+		// } else {
+		// 	emailErrorElement.hidden = true;
+		// }
+		// if (password === null || password === "" || password.length < 6) {
+		// 	passwordErrorElement.hidden = false;
+		// 	passwordErrorElement.innerText =
+		// 		"Password cannot be empty and must be longer than 6 characters.";
+		// 	anyError = true;
+		// } else {
+		// 	passwordErrorElement.hidden = true;
+		// }
+		// if (email !== confirmEmail) {
+		// 	confirmEmailErrorElement.hidden = false;
+		// 	confirmEmailErrorElement.innerText =
+		// 		"The email addresses in the two fields do not match.";
+		// 	anyError = true;
+		// }
 
-		// check if AGE is >=13 yrs
-		if (!dob) return;
-		let temp = !calculate_age(new Date(dob.year, dob.month, dob.day));
+		// // check if AGE is >=13 yrs
+		// if (!dob) return;
+		// let temp = !calculate_age(new Date(dob.year, dob.month, dob.day));
 
-		calculate_age(new Date(dob.year, dob.month, dob.day));
-		// Show the Error
-		if (temp) return void (document.getElementById("yearError").hidden = false);
+		// calculate_age(new Date(dob.year, dob.month, dob.day));
+		// // Show the Error
+		// if (temp) return void (document.getElementById("yearError").hidden = false);
+
 		if (anyError) return;
-		document.getElementById("yearError").hidden = true;
+		// document.getElementById("yearError").hidden = true;
+
 		createUserWithEmailAndPassword(auth, email, password)
 			.then((userCredential) => {
 				// Signed in
@@ -188,11 +261,21 @@ function SignupForm({ styles }) {
 					value={email}
 					placeholder="Enter your email."
 					onChange={(e) => setEmail(e.target.value)}
+					onBlur={() => {
+						setSomeError(1);
+					}}
+					tabIndex={0}
+					// onBlur={() => console.log("blurr\n")}
 				/>
 			</div>
-			<div id="emailError" className="mt-2 text-red-500" hidden={true}>
+			{/* emailError */}
+			<div
+				id="emailError"
+				className="mt-2 text-red-500"
+				hidden={!emailError.value}
+			>
 				<CrossMark classes={styles.crossMark} />
-				{"Sorry, you don't meet the age requirements"}
+				{emailError.message}
 			</div>
 			{/* For confirmEmail */}
 			<div className="flex flex-col">
@@ -209,12 +292,22 @@ function SignupForm({ styles }) {
 					value={confirmEmail}
 					placeholder="Enter your email again."
 					onChange={(e) => setConfirmEmail(e.target.value)}
+					onBlur={() => {
+						setSomeError(2);
+					}}
+					tabIndex={0}
 				/>
 			</div>
-			<div id="confirmEmailError" className="mt-2 text-red-500" hidden={true}>
+			{/* confirmEmailError */}
+			<div
+				id="confirmEmailError"
+				className="mt-2 text-red-500"
+				hidden={!confirmEmailError.value}
+			>
 				<CrossMark classes={styles.crossMark} />
-				{"Sorry, you don't meet the age requirements"}
+				{confirmEmailError.message}
 			</div>
+
 			{/* For Password */}
 			<div className="flex flex-col">
 				<label htmlFor={styles.password} className="font-semibold mt-6">
@@ -230,12 +323,23 @@ function SignupForm({ styles }) {
 					value={password}
 					placeholder="Create a password."
 					onChange={(e) => setPassword(e.target.value)}
+					onBlur={() => {
+						setSomeError(3);
+					}}
+					tabIndex={0}
 				/>
 			</div>
-			<div id="passwordError" className="mt-2 text-red-500" hidden={true}>
+
+			{/* passwordError */}
+			<div
+				id="passwordError"
+				className="mt-2 text-red-500"
+				hidden={!passwordError.value}
+			>
 				<CrossMark classes={styles.crossMark} />
-				{"Sorry, you don't meet the age requirements"}
+				{passwordError.message}
 			</div>
+
 			{/* For Profile name */}
 			<div className="flex flex-col">
 				<label htmlFor={styles.profileName} className="font-semibold mt-6">
@@ -253,6 +357,7 @@ function SignupForm({ styles }) {
 					onChange={(e) => setProfile(e.target.value)}
 				/>
 			</div>
+
 			{/* For date of birth */}
 			<div className="flex flex-col">
 				<label htmlFor={styles.dob} className="font-semibold mt-6 mb-5">
@@ -266,9 +371,15 @@ function SignupForm({ styles }) {
 					shouldHighlightWeekends={false}
 				/>
 			</div>
-			<div id="yearError" className="mt-2 text-red-500" hidden={true}>
+			{/* yearError */}
+			<div
+				id="yearError"
+				className="mt-2 text-red-500"
+				hidden={!yearError.value}
+			>
 				<CrossMark classes={styles.crossMark} />
-				{"Sorry, you don't meet the age requirements"}
+				{/* "Sorry, you don't meet the age requirements" */}
+				{yearError.message}
 			</div>
 
 			<div className="mt-12 mb-2">
@@ -297,7 +408,7 @@ function SignupForm({ styles }) {
 				Have an account? &nbsp;
 				<Link href="/login">
 					<a className="text-spotifyGreen underline hover:text-spotifyLightGreen2  ">
-						Log in.{" "}
+						Log in.
 					</a>
 				</Link>
 			</p>
