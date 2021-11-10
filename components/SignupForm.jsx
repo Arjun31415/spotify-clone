@@ -22,7 +22,7 @@ import { auth } from "../lib/firebase";
 import { updateProfile } from "firebase/auth";
 import { useRouter } from "next/router";
 
-function SignupForm({ styles }) {
+export default function SignupForm({ styles }) {
 	const router = useRouter();
 
 	const recaptchaRef = createRef();
@@ -33,14 +33,11 @@ function SignupForm({ styles }) {
 	const [profileName, setProfile] = useState("");
 	const [dob, setDOB] = useState(null);
 
-	// TODO: For errors, need more of them
-
 	const [checkEmail, setCheckEmail] = useState(-1);
 	const [checkPassword, setCheckPassword] = useState(-1);
 	const [checkConfirmEmail, setCheckConfirmEmail] = useState(-1);
 	const [checkProfileName, setCheckProfileName] = useState(-1);
 	const [checkDOB, setCheckDOB] = useState(-1);
-	// const [checkEmail, setCheckEmail] = useState(-1);
 
 	let captchaErrorElement;
 
@@ -232,45 +229,6 @@ function SignupForm({ styles }) {
 		}
 
 		if (anyError) return;
-		// check for null or empty string first
-		// if (!dob) {
-		// 	yearErrorElement.hidden = false;
-		// 	yearErrorElement.innerText = "Please enter your date of birth.";
-		// 	anyError = true;
-		// }
-
-		// if (email === null || email === "") {
-		// 	emailErrorElement.hidden = false;
-		// 	emailErrorElement.innerText = "Please enter and email";
-		// 	anyError = true;
-		// } else {
-		// 	emailErrorElement.hidden = true;
-		// }
-		// if (password === null || password === "" || password.length < 6) {
-		// 	passwordErrorElement.hidden = false;
-		// 	passwordErrorElement.innerText =
-		// 		"Password cannot be empty and must be longer than 6 characters.";
-		// 	anyError = true;
-		// } else {
-		// 	passwordErrorElement.hidden = true;
-		// }
-		// if (email !== confirmEmail) {
-		// 	confirmEmailErrorElement.hidden = false;
-		// 	confirmEmailErrorElement.innerText =
-		// 		"The email addresses in the two fields do not match.";
-		// 	anyError = true;
-		// }
-
-		// // check if AGE is >=13 yrs
-		// if (!dob) return;
-		// let temp = !calculate_age(new Date(dob.year, dob.month, dob.day));
-
-		// calculate_age(new Date(dob.year, dob.month, dob.day));
-		// // Show the Error
-		// if (temp) return void (document.getElementById("yearError").hidden = false);
-
-		// document.getElementById("yearError").hidden = true;
-
 		createUserWithEmailAndPassword(auth, email, password)
 			.then((userCredential) => {
 				// Signed in
@@ -525,5 +483,3 @@ function SignupForm({ styles }) {
 		</form>
 	);
 }
-
-export default SignupForm;
