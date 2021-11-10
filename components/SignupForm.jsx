@@ -1,5 +1,4 @@
 import "@amir04lm26/react-modern-calendar-date-picker/lib/DatePicker.css";
-import {} from "react";
 
 import DatePicker, {
 	utils,
@@ -9,13 +8,19 @@ import {
 	createUserWithEmailAndPassword,
 	signInWithEmailAndPassword,
 } from "@firebase/auth";
-import { getAuth, updateProfile } from "firebase/auth";
+import {
+	validateDOB,
+	validateEmail,
+	validatePassword,
+	validateProfileName,
+} from "../utils/Validator.ts";
 
 import CrossMark from "./figures/CrossMark";
 import Link from "next/link";
 import ReCAPTCHA from "react-google-recaptcha";
 import { auth } from "../lib/firebase";
 import calculate_age from "../utils/AgeCalc";
+import { updateProfile } from "firebase/auth";
 import { useRouter } from "next/router";
 
 function SignupForm({ styles }) {
@@ -31,7 +36,13 @@ function SignupForm({ styles }) {
 
 	// TODO: For errors, need more of them
 
-	const [someError, setSomeError] = useState(-1);
+	const [checkEmail, setCheckEmail] = useState(-1);
+	const [checkPassword, setCheckPassword] = useState(-1);
+	const [checkConfirmEmail, setCheckConfirmEmail] = useState(-1);
+	const [checkProfileName, setCheckProfileName] = useState(-1);
+	const [checkDOB, setCheckDOB] = useState(-1);
+	// const [checkEmail, setCheckEmail] = useState(-1);
+
 	let captchaErrorElement;
 
 	if (process.browser) {
@@ -46,10 +57,14 @@ function SignupForm({ styles }) {
 		value: false,
 		message: "",
 	});
-	const [yearError, setYearError] = useState({ value: false, message: "" });
+	const [dobError, setDobError] = useState({ value: false, message: "" });
 	const [captchaError, setCaptchaError] = useState({
 		value: false,
 		message: "",
+	});
+	const [profileError, setProfileError] = useState({
+		value: false,
+		message: "This appears on your profile.",
 	});
 
 	function signIn(e) {
@@ -62,7 +77,6 @@ function SignupForm({ styles }) {
 				if (userCredential) {
 					router.push("/");
 				}
-				// ...
 			})
 			.catch((error) => {
 				const errorCode = error.code;
@@ -77,12 +91,18 @@ function SignupForm({ styles }) {
 			isFirstRun.current[0] = false;
 			return;
 		}
-		if (!email || email === "")
-			setEmailError({ value: true, message: "You need to enter your email" });
+		if (!validateEmail) return;
+		try {
+			if (validateEmail(email).value)
+				setEmailError({ value: true, message: validateEmail(email).message });
+		} catch (e) {
+			console.error(e);
+		}
+
 		return () => {
 			setEmailError({ value: false, message: "" });
 		};
-	}, [email, someError]);
+	}, [email, checkEmail]);
 
 	// Confirm Email Error
 	useEffect(() => {
@@ -90,9 +110,8 @@ function SignupForm({ styles }) {
 			isFirstRun.current[1] = false;
 			return;
 		}
-		console.log("confirmEmailError", confirmEmail);
+		// console.log("confirmEmailError", confirmEmail);
 		if (!confirmEmail || confirmEmail === "") {
-			console.log("confirm");
 			setConfirmEmailError({
 				value: true,
 				message: "You need to confirm your email.",
@@ -107,44 +126,102 @@ function SignupForm({ styles }) {
 		return () => {
 			setConfirmEmailError({ value: false, message: "" });
 		};
-	}, [confirmEmail, someError, email]);
+	}, [confirmEmail, checkConfirmEmail, email]);
 	// Password error
 	useEffect(() => {
 		if (isFirstRun.current[2]) {
 			isFirstRun.current[2] = false;
 			return;
 		}
-		if (!password || password === "") {
-			console.log("running effect");
-			setPasswordError({ value: true, message: "Password cannot be empty" });
+		try {
+			const temp = validatePassword(password);
+			if (temp.value) {
+				setPasswordError({ value: true, message: temp.message });
+			}
+		} catch (e) {
+			console.error(e);
 		}
+
 		return () => {
 			setPasswordError({ value: false, message: "" });
 		};
-	}, [password, someError]);
-	// DOB error
+	}, [password, checkPassword]);
+	// Profile Name error
 	useEffect(() => {
 		if (isFirstRun.current[3]) {
 			isFirstRun.current[3] = false;
 			return;
 		}
-		if (!confirmEmail || confirmEmail !== email) {
-			setConfirmEmailError(true);
+		try {
+			const temp = validateProfileName(profileName);
+			if (temp.value) {
+				setProfileError({ value: true, message: temp.message });
+			}
+		} catch (e) {
+			console.error(e);
 		}
+
 		return () => {
-			setConfirmEmailError(false);
+			setProfileError({
+				value: false,
+				message: "This appears on your profile",
+			});
 		};
-	}, [confirmEmail, someError, email]);
+	}, [profileName, checkProfileName]);
+	// DOB error
+	useEffect(() => {
+		if (isFirstRun.current[4]) {
+			isFirstRun.current[4] = false;
+			return;
+		}
+		try {
+			const temp = validateDOB(dob);
+			if (temp.value) setDobError({ value: true, message: temp.message });
+		} catch (e) {
+			console.error(e);
+		}
+
+		return () => {
+			setDobError({ value: false, message: "" });
+		};
+	}, [dob, checkDOB]);
 
 	function signUp(e) {
 		e.preventDefault();
 		const recaptchaValue = recaptchaRef.current.getValue();
 		console.log(recaptchaValue);
 		let anyError = false;
+		// validate the form
+
 		if (!recaptchaValue) {
 			captchaErrorElement.hidden = false;
 			anyError = true;
 		} else captchaErrorElement.hidden = true;
+
+		if (validateEmail(email).value) {
+			setEmailError(validateEmail(email));
+			anyError = true;
+		} else if (validatePassword(password).value) {
+			setPasswordError(validatePassword(password));
+			anyError = true;
+		}
+
+		if (!confirmEmail || confirmEmail === "") {
+			setConfirmEmailError({
+				value: true,
+				message: "You need to confirm your email.",
+			});
+			anyError = true;
+			// console.log("confirmEmailError", confirmEmailError);
+		} else if (confirmEmail !== email) {
+			setConfirmEmailError({
+				value: true,
+				message: "The email addresses don't match.",
+			});
+			anyError = true;
+		}
+
+		if (anyError) return;
 		// check for null or empty string first
 		// if (!dob) {
 		// 	yearErrorElement.hidden = false;
@@ -182,7 +259,6 @@ function SignupForm({ styles }) {
 		// // Show the Error
 		// if (temp) return void (document.getElementById("yearError").hidden = false);
 
-		if (anyError) return;
 		// document.getElementById("yearError").hidden = true;
 
 		createUserWithEmailAndPassword(auth, email, password)
@@ -245,7 +321,7 @@ function SignupForm({ styles }) {
 		}
 	};
 	return (
-		<form className="flex flex-col" method="post">
+		<form className="flex flex-col" method="post" style={{ maxWidth: "460px" }}>
 			{/* For email */}
 			<div className="flex flex-col">
 				<label htmlFor={styles.email} className="font-semibold">
@@ -262,16 +338,15 @@ function SignupForm({ styles }) {
 					placeholder="Enter your email."
 					onChange={(e) => setEmail(e.target.value)}
 					onBlur={() => {
-						setSomeError(1);
+						setCheckEmail(1);
 					}}
 					tabIndex={0}
-					// onBlur={() => console.log("blurr\n")}
 				/>
 			</div>
 			{/* emailError */}
 			<div
 				id="emailError"
-				className="mt-2 text-red-500"
+				className="mt-2 text-red-500 text-sm"
 				hidden={!emailError.value}
 			>
 				<CrossMark classes={styles.crossMark} />
@@ -293,7 +368,7 @@ function SignupForm({ styles }) {
 					placeholder="Enter your email again."
 					onChange={(e) => setConfirmEmail(e.target.value)}
 					onBlur={() => {
-						setSomeError(2);
+						setCheckConfirmEmail(1);
 					}}
 					tabIndex={0}
 				/>
@@ -301,7 +376,7 @@ function SignupForm({ styles }) {
 			{/* confirmEmailError */}
 			<div
 				id="confirmEmailError"
-				className="mt-2 text-red-500"
+				className="mt-2 text-red-500 text-sm"
 				hidden={!confirmEmailError.value}
 			>
 				<CrossMark classes={styles.crossMark} />
@@ -324,7 +399,7 @@ function SignupForm({ styles }) {
 					placeholder="Create a password."
 					onChange={(e) => setPassword(e.target.value)}
 					onBlur={() => {
-						setSomeError(3);
+						setCheckPassword(1);
 					}}
 					tabIndex={0}
 				/>
@@ -333,7 +408,7 @@ function SignupForm({ styles }) {
 			{/* passwordError */}
 			<div
 				id="passwordError"
-				className="mt-2 text-red-500"
+				className="mt-2 text-red-500 text-sm"
 				hidden={!passwordError.value}
 			>
 				<CrossMark classes={styles.crossMark} />
@@ -355,11 +430,23 @@ function SignupForm({ styles }) {
 					value={profileName}
 					placeholder="Enter a profile name."
 					onChange={(e) => setProfile(e.target.value)}
+					tabIndex={0}
+					onBlur={() => {
+						setCheckProfileName(1);
+					}}
 				/>
+			</div>
+			<div
+				id="profileError"
+				className={"mt-2 text-sm " + (profileError.value && "text-red-500")}
+				hidden={false}
+			>
+				{profileError.value && <CrossMark classes={styles.crossMark} />}
+				{profileError.message}
 			</div>
 
 			{/* For date of birth */}
-			<div className="flex flex-col">
+			<div className="flex flex-col" onBlur={() => setCheckDOB(1)}>
 				<label htmlFor={styles.dob} className="font-semibold mt-6 mb-5">
 					{"What's your date of Birth?"}
 				</label>
@@ -373,13 +460,13 @@ function SignupForm({ styles }) {
 			</div>
 			{/* yearError */}
 			<div
-				id="yearError"
-				className="mt-2 text-red-500"
-				hidden={!yearError.value}
+				id={styles.dobError}
+				className="mt-2 text-red-500 text-sm"
+				hidden={!dobError.value}
 			>
 				<CrossMark classes={styles.crossMark} />
 				{/* "Sorry, you don't meet the age requirements" */}
-				{yearError.message}
+				{dobError.message}
 			</div>
 
 			<div className="mt-12 mb-2">
@@ -390,7 +477,11 @@ function SignupForm({ styles }) {
 				/>
 			</div>
 			{/* captchaError */}
-			<div id="captchaError" className="mt-2 text-red-500" hidden={true}>
+			<div
+				id="captchaError"
+				className="mt-2 text-red-500 text-sm"
+				hidden={true}
+			>
 				<CrossMark classes={styles.crossMark} />
 				{"Confirm you are not a robot"}
 			</div>
@@ -399,7 +490,16 @@ function SignupForm({ styles }) {
 				<button
 					type="submit"
 					onClick={signUp}
-					className="bg-spotifyGreen rounded-full py-5 px-12 w-auto font-bold mt-3"
+					className={
+						"bg-spotifyGreen rounded-full py-5 px-12 w-auto font-bold mt-3 disabled:opacity-40"
+					}
+					disabled={
+						emailError.value ||
+						confirmEmailError.value ||
+						passwordError.value ||
+						profileError.value ||
+						dobError.value
+					}
 				>
 					Sign up
 				</button>
