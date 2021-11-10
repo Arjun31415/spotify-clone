@@ -201,7 +201,8 @@ function SignupForm({ styles }) {
 		if (validateEmail(email).value) {
 			setEmailError(validateEmail(email));
 			anyError = true;
-		} else if (validatePassword(password).value) {
+		}
+		if (validatePassword(password).value) {
 			setPasswordError(validatePassword(password));
 			anyError = true;
 		}
@@ -219,6 +220,16 @@ function SignupForm({ styles }) {
 				message: "The email addresses don't match.",
 			});
 			anyError = true;
+		}
+		if (validateDOB(dob).value) {
+			setDobError({ value: true, message: validateDOB(dob).message });
+			anyError = true;
+		}
+		if (validateProfileName(profileName).value) {
+			setProfileError({
+				value: true,
+				message: validateProfileName(profileName).message,
+			});
 		}
 
 		if (anyError) return;
