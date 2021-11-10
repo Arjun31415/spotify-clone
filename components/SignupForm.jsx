@@ -19,7 +19,6 @@ import CrossMark from "./figures/CrossMark";
 import Link from "next/link";
 import ReCAPTCHA from "react-google-recaptcha";
 import { auth } from "../lib/firebase";
-import calculate_age from "../utils/AgeCalc";
 import { updateProfile } from "firebase/auth";
 import { useRouter } from "next/router";
 
