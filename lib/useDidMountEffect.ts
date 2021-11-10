@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 
-const useDidMountEffect = (func :()=>any, deps:Array<any>) => {
+const useDidMountEffect = (func: () => any, deps: Array<any>) => {
 	const didMount = useRef(false);
 
 	useEffect(() => {
