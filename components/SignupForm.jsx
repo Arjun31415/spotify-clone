@@ -4,10 +4,7 @@ import DatePicker, {
 	utils,
 } from "@amir04lm26/react-modern-calendar-date-picker";
 import React, { createRef, useEffect, useRef, useState } from "react";
-import {
-	createUserWithEmailAndPassword,
-	signInWithEmailAndPassword,
-} from "@firebase/auth";
+import { createUserWithEmailAndPassword } from "@firebase/auth";
 import {
 	validateDOB,
 	validateEmail,
@@ -63,23 +60,6 @@ export default function SignupForm({ styles }) {
 		message: "This appears on your profile.",
 	});
 
-	function signIn(e) {
-		e.preventDefault();
-		signInWithEmailAndPassword(auth, email, password)
-			.then((userCredential) => {
-				// Signed in
-				console.log(userCredential);
-				// const user = userCredential.user;
-				if (userCredential) {
-					router.push("/");
-				}
-			})
-			.catch((error) => {
-				const errorCode = error.code;
-				const errorMessage = error.message;
-				console.error({ code: errorCode, message: errorMessage });
-			});
-	}
 	const isFirstRun = useRef(new Array(7).fill(true));
 	// for email error
 	useEffect(() => {

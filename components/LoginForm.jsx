@@ -2,10 +2,15 @@ import CrossMark from "./figures/CrossMark";
 import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
 import { validateEmail, validatePassword } from "../utils/Validator.ts";
+import { signInWithEmailAndPassword } from "@firebase/auth";
+import { auth } from "../lib/firebase";
+import { useRouter } from "next/router";
 
 export default function LoginForm({styles}){
 
 	// for form control
+	const router = useRouter();
+
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
@@ -17,6 +22,23 @@ export default function LoginForm({styles}){
 		message: "",
 	});
 	const isFirstRun = useRef(new Array(2).fill(true));
+	function login(e) {
+		e.preventDefault();
+		signInWithEmailAndPassword(auth, email, password)
+			.then((userCredential) => {
+				// Signed in
+				console.log(userCredential);
+				// const user = userCredential.user;
+				if (userCredential) {
+					router.push("/");
+				}
+			})
+			.catch((error) => {
+				const errorCode = error.code;
+				const errorMessage = error.message;
+				console.error({ code: errorCode, message: errorMessage });
+			});
+	}
 	// for email error
 	useEffect(() => {
 		if (isFirstRun.current[0]) {
@@ -56,10 +78,7 @@ export default function LoginForm({styles}){
 		};
 	}, [password, checkPassword]);
 
-	function login(e) {
-		e.preventDefault();
-	//	TODO: Firebase Login here along with storing the user to Redux store
-	}
+
 	return <form className="flex flex-col" method="post" style={{ maxWidth: "460px" }}>
 		{/* For email */}
 		<div className="flex flex-col">
