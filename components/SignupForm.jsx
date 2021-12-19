@@ -422,7 +422,7 @@ export default function SignupForm({ styles }) {
 					value={dob}
 					onChange={setDOB}
 					inputPlaceholder="Select Birth date"
-					maximumDate={utils("").getToday()}
+					maximumDate={utils().getToday()}
 					shouldHighlightWeekends={false}
 				/>
 			</div>
