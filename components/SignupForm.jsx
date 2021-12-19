@@ -54,10 +54,10 @@ export default function SignupForm({ styles }) {
 		message: "",
 	});
 	const [dobError, setDobError] = useState({ value: false, message: "" });
-	const [captchaError, setCaptchaError] = useState({
-		value: false,
-		message: "",
-	});
+	// const [captchaError, setCaptchaError] = useState({
+	// 	value: false,
+	// 	message: "",
+	// });
 	const [profileError, setProfileError] = useState({
 		value: false,
 		message: "This appears on your profile.",
@@ -268,7 +268,7 @@ export default function SignupForm({ styles }) {
 				},
 			});
 			if (response.ok) {
-				// If the response is ok than show the success alert
+				// If the response is ok than show the success
 				// alert("Email registered successfully");
 				console.log("Recaptcha successful");
 			} else {
@@ -422,7 +422,7 @@ export default function SignupForm({ styles }) {
 					value={dob}
 					onChange={setDOB}
 					inputPlaceholder="Select Birth date"
-					maximumDate={utils().getToday()}
+					maximumDate={utils("").getToday()}
 					shouldHighlightWeekends={false}
 				/>
 			</div>

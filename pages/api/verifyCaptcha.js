@@ -1,3 +1,5 @@
+// noinspection SpellCheckingInspection
+
 import fetch from "node-fetch";
 
 const sleep = () =>
@@ -22,7 +24,7 @@ export default async function handler(req, res) {
 		}
 
 		try {
-			// Ping the google recaptcha verify API to verify the captcha code you received
+			// Ping the Google recaptcha verify API to verify the captcha code you received
 			const response = await fetch(
 				`https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${captcha}`,
 				{

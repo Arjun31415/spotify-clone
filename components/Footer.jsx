@@ -60,7 +60,7 @@ function Footer({ classes }) {
 				</nav>
 			</div>
 
-			{/* Separate div at the bottom for Privacy, TOS etc */}
+			{/* TODO: Separate div at the bottom for Privacy, TOS etc */}
 			<div></div>
 		</div>
 	);
