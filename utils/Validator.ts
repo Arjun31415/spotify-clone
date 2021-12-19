@@ -8,7 +8,6 @@ export function validateEmail(email: string): {
 		return { value: true, message: "You need to enter your email" };
 	const pattern = regexPattern;
 	let val = pattern.test(email);
-	console.log(val);
 	if (!val) return { value: !val, message: "It is not a valid email" };
 	return { value: false, message: "" };
 }

@@ -7,7 +7,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@amir04lm26/react-modern-calendar-date-picker": "^1.0.1",
+    "@amir04lm26/react-modern-calendar-date-picker": "^1.0.01",
     "@babel/core": "^7.15.8",
     "@babel/plugin-syntax-jsx": "^7.14.5",
     "ansi-regex": "5.0.1",
@@ -24,6 +24,7 @@
     "eslint": "7.32.0",
     "eslint-config-next": "11.1.2",
     "postcss": "^8.3.11",
-    "tailwindcss": "^2.2.17"
+    "tailwindcss": "^2.2.17",
+    "typescript": "^4.5.4"
   }
 }

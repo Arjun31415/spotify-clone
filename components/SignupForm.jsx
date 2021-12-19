@@ -472,7 +472,7 @@ export default function SignupForm({ styles }) {
 					Sign up
 				</button>
 			</div>
-			<p className="flex justify-center mt-10">
+			<p className="flex justify-center mt-10 mb-20">
 				Have an account? &nbsp;
 				<Link href="/login">
 					<a className="text-spotifyGreen underline hover:text-spotifyLightGreen2  ">

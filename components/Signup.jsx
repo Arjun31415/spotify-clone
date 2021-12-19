@@ -1,6 +1,5 @@
 import Brand from "./figures/Brand";
 import React from "react";
-import Script from "next/script";
 import SignupForm from "./SignupForm";
 import styles from "./Signup.module.css";
 export default function Signup() {
@@ -16,7 +15,7 @@ export default function Signup() {
 
 			<div className={`flex flex-col`}>
 				<div className={`bg-transparent flex justify-center `}>
-					<Brand textColor="text-black" height="4vh"></Brand>
+					<Brand textColor="text-black" height="6vh"/>
 				</div>
 				<p className={`${styles.mt3} text-3xl font-semibold`}>
 					Sign up for free to start listening.
