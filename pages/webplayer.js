@@ -1,11 +1,10 @@
 import { useEffect } from "react";
 import { auth } from "../lib/firebase";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../hooks/hooks";
 
 export default function WebPlayer() {
-	const dispatch = useDispatch();
-	//TODO: Put this in a file of its own and export it as useUserSelector
-	const user = useSelector((state) => state.user.user);
+	const dispatch = useAppDispatch();
+	const user = useAppSelector((state) => state.user.user);
 	useEffect(() => {
 		// will only run once when app component loads.
 		auth.onAuthStateChanged((authUser) => {

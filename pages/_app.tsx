@@ -2,7 +2,7 @@ import "../styles/globals.css";
 import { Provider } from "react-redux";
 import type { AppProps } from "next/app";
 import store from "../redux/store";
-import withRedux from "next-redux-wrapper";
+import { createWrapper } from "next-redux-wrapper";
 
 function App({ Component, pageProps }: AppProps) {
 	return (
@@ -13,4 +13,6 @@ function App({ Component, pageProps }: AppProps) {
 }
 const makeStore = () => store;
 
-export default withRedux(makeStore)(App);
+const wrapper = createWrapper(makeStore);
+
+export default wrapper.withRedux(App);
