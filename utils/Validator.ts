@@ -1,13 +1,13 @@
 import calculate_age from "./AgeCalc";
 import { regexPattern } from "./RegexObject";
+
 export function validateEmail(email: string): {
 	value: Boolean,
 	message: string,
 } {
 	if (!email || email === "")
 		return { value: true, message: "You need to enter your email" };
-	const pattern = regexPattern;
-	let val = pattern.test(email);
+	let val = regexPattern.test(email);
 	if (!val) return { value: !val, message: "It is not a valid email" };
 	return { value: false, message: "" };
 }
