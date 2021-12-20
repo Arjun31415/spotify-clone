@@ -4,13 +4,13 @@ import { useDispatch, useSelector } from "react-redux";
 
 export default function WebPlayer() {
 	const dispatch = useDispatch();
-	const user = useSelector((state) => state.user);
+	//TODO: Put this in a file of its own and export it as useUserSelector
+	const user = useSelector((state) => state.user.user);
 	useEffect(() => {
 		// will only run once when app component loads.
 		auth.onAuthStateChanged((authUser) => {
-			// user = authUser;
 			console.log("User: ", authUser);
-			console.log(user.displayName);
+			// console.log(user);
 
 			if (authUser) {
 				// the user just logged in or the user was already logged in
