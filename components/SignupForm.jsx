@@ -217,7 +217,7 @@ export default function SignupForm({ styles }) {
 				// update the user's profileName
 				updateProfile(user, { displayName: `${profileName}` });
 				if (userCredential) {
-					router.push("/");
+					router.push("/webplayer");
 				}
 				console.log("Date of birth: ", user.dob);
 				// ...

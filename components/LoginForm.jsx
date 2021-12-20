@@ -6,8 +6,7 @@ import { signInWithEmailAndPassword } from "@firebase/auth";
 import { auth } from "../lib/firebase";
 import { useRouter } from "next/router";
 
-export default function LoginForm({styles}){
-
+export default function LoginForm({ styles }) {
 	// for form control
 	const router = useRouter();
 
@@ -30,7 +29,7 @@ export default function LoginForm({styles}){
 				console.log(userCredential);
 				// const user = userCredential.user;
 				if (userCredential) {
-					router.push("/");
+					router.push("/webplayer");
 				}
 			})
 			.catch((error) => {
@@ -78,95 +77,90 @@ export default function LoginForm({styles}){
 		};
 	}, [password, checkPassword]);
 
-
-	return <form className="flex flex-col" method="post" style={{ maxWidth: "460px" }}>
-		{/* For email */}
-		<div className="flex flex-col">
-			<label htmlFor={styles.email} className="font-semibold">
-				{"Enter email address"}
-			</label>
-			<input
-				type="text"
-				id={styles.email}
-				name="email"
-				className={`border-solid border-gray-500 border-2 
+	return (
+		<form className="flex flex-col" method="post" style={{ maxWidth: "460px" }}>
+			{/* For email */}
+			<div className="flex flex-col">
+				<label htmlFor={styles.email} className="font-semibold">
+					{"Enter email address"}
+				</label>
+				<input
+					type="text"
+					id={styles.email}
+					name="email"
+					className={`border-solid border-gray-500 border-2 
                             rounded h-10 mt-3.5 p-5  
                             `}
-				value={email}
-				placeholder="Enter your email."
-				onChange={(e) => setEmail(e.target.value)}
-				onBlur={() => {
-					setCheckEmail(1);
-				}}
-				tabIndex={0}
-			/>
-		</div>
-		{/* emailError */}
-		<div
-			id="emailError"
-			className="mt-2 text-red-500 text-sm"
-			hidden={!emailError.value}
-		>
-			<CrossMark classes={styles.crossMark} />
-			{emailError.message}
-		</div>
+					value={email}
+					placeholder="Enter your email."
+					onChange={(e) => setEmail(e.target.value)}
+					onBlur={() => {
+						setCheckEmail(1);
+					}}
+					tabIndex={0}
+				/>
+			</div>
+			{/* emailError */}
+			<div
+				id="emailError"
+				className="mt-2 text-red-500 text-sm"
+				hidden={!emailError.value}
+			>
+				<CrossMark classes={styles.crossMark} />
+				{emailError.message}
+			</div>
 
-
-		{/* For Password */}
-		<div className="flex flex-col">
-			<label htmlFor={styles.password} className="font-semibold mt-6">
-				{"Password"}
-			</label>
-			<input
-				type="password"
-				id={styles.password}
-				name="password"
-				className={`border-solid border-gray-500 border-2 
+			{/* For Password */}
+			<div className="flex flex-col">
+				<label htmlFor={styles.password} className="font-semibold mt-6">
+					{"Password"}
+				</label>
+				<input
+					type="password"
+					id={styles.password}
+					name="password"
+					className={`border-solid border-gray-500 border-2 
                             rounded h-10 mt-3.5 p-5 
                             `}
-				value={password}
-				placeholder="Enter password."
-				onChange={(e) => setPassword(e.target.value)}
-				onBlur={() => {
-					setCheckPassword(1);
-				}}
-				tabIndex={0}
-			/>
-		</div>
-		<div
-			id="passwordError"
-			className="mt-2 text-red-500 text-sm"
-			hidden={!passwordError.value}
-		>
-			<CrossMark classes={styles.crossMark} />
-			{passwordError.message}
-		</div>
-
-
-		{/* SignUp */}
-		<div className="flex justify-center mt-3.5">
-			<button
-				type="submit"
-				onClick={login}
-				className={
-					"bg-spotifyGreen rounded-full py-5 px-12 w-auto font-bold mt-3 disabled:opacity-40"
-				}
-				disabled={
-					emailError.value ||
-					passwordError.value
-				}
+					value={password}
+					placeholder="Enter password."
+					onChange={(e) => setPassword(e.target.value)}
+					onBlur={() => {
+						setCheckPassword(1);
+					}}
+					tabIndex={0}
+				/>
+			</div>
+			<div
+				id="passwordError"
+				className="mt-2 text-red-500 text-sm"
+				hidden={!passwordError.value}
 			>
-				Log In
-			</button>
-		</div>
-		<p className="flex justify-center mt-10">
-			Don&apos;t have an account? &nbsp;
-			<Link href="/signup">
-				<a className="text-spotifyGreen underline hover:text-spotifyLightGreen2  ">
-					Sign Up.
-				</a>
-			</Link>
-		</p>
-	</form>
+				<CrossMark classes={styles.crossMark} />
+				{passwordError.message}
+			</div>
 
+			{/* SignUp */}
+			<div className="flex justify-center mt-3.5">
+				<button
+					type="submit"
+					onClick={login}
+					className={
+						"bg-spotifyGreen rounded-full py-5 px-12 w-auto font-bold mt-3 disabled:opacity-40"
+					}
+					disabled={emailError.value || passwordError.value}
+				>
+					Log In
+				</button>
+			</div>
+			<p className="flex justify-center mt-10">
+				Don&apos;t have an account? &nbsp;
+				<Link href="/signup">
+					<a className="text-spotifyGreen underline hover:text-spotifyLightGreen2  ">
+						Sign Up.
+					</a>
+				</Link>
+			</p>
+		</form>
+	);
 }
