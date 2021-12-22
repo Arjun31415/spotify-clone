@@ -1,8 +1,18 @@
-import { useEffect } from "react";
-import { auth } from "../lib/firebase";
 import { useAppDispatch, useAppSelector } from "../hooks/hooks";
 
+import { auth } from "../lib/firebase";
+import spotifyApi from "../lib/spotifyAPI";
+import { useEffect } from "react";
+
 export default function WebPlayer() {
+	spotifyApi.getUserPlaylists("jmperezperez").then(
+		function (data) {
+			console.log("User playlists", data);
+		},
+		function (err) {
+			console.error(err);
+		}
+	);
 	const dispatch = useAppDispatch();
 	const user = useAppSelector((state) => state.user.user);
 	useEffect(() => {
