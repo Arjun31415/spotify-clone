@@ -2,37 +2,13 @@ import { useAppDispatch, useAppSelector } from "../hooks/hooks";
 // import spotifyApi from "../lib/spotifyAPI";
 import { useEffect, useState } from "react";
 
+import Router from "next/router";
 import { auth } from "../lib/firebase";
 import { useRouter } from "next/router";
 
 export default function WebPlayer() {
-	const [authURL, setAuthURL] = useState({});
-	const [playlists, setPlaylists] = useState({});
+	const [playlists, setPlaylists] = useState([]);
 
-	const router = useRouter();
-	const spotifyAuthUrl = async () => {
-		try {
-			const response = await fetch("/api/spotifyAPI", {
-				method: "POST",
-				body: JSON.stringify({ nextURL: "/webplayer" }),
-				headers: {
-					"Content-Type": "application/json",
-				},
-			});
-			setAuthURL(await response.json());
-			if (response.ok) {
-				// If the response is ok than show the success
-				console.log("Url received");
-			}
-		} catch (error) {
-			alert(
-				error?.message ||
-					"Something went wrong. Please contact admin for bug report "
-			);
-		} finally {
-			// idk man
-		}
-	};
 	const getPlaylists = async () => {
 		try {
 			const response = await fetch("/api/spotifyPlaylists", {
@@ -41,10 +17,15 @@ export default function WebPlayer() {
 					"Content-Type": "application/json",
 				},
 			});
-			setPlaylists(await response.json());
+			console.log(response);
 			if (response.ok) {
 				// If the response is ok than show the success
 				console.log("Playlists received");
+				setPlaylists(await response.json());
+			}
+			if (response.status >= 400 && response.status < 500) {
+				console.log("error");
+				Router.reload(window.location.pathname);
 			}
 		} catch (error) {
 			alert(
@@ -70,10 +51,6 @@ export default function WebPlayer() {
 					type: "SET_USER",
 					user: authUser,
 				});
-				if (!authURL.hasOwnProperty("url")) {
-					console.log("authhing");
-					spotifyAuthUrl();
-				}
 			} else {
 				//  the user is logged out
 				dispatch({
@@ -83,20 +60,18 @@ export default function WebPlayer() {
 			}
 		});
 	}, [dispatch]);
-	useEffect(() => {
-		console.log(authURL);
-		try {
-			console.log("AUTHURL: ");
-			console.log(authURL);
-			router.push(authURL["url"]);
-		} catch (error) {
-			return;
-		}
-	}, [authURL]);
+	console.log("typeof playlists", typeof playlists);
+	console.log(playlists);
+
 	return (
 		<div>
 			<h1>Hi{user?.displayName}</h1>
 			<button onClick={getPlaylists}>Load spotify URL</button>
+			{playlists.items?.map((playlist) => (
+				<div key={playlist["id"]} id={playlist["id"]}>
+					{playlist["name"]}
+				</div>
+			))}
 		</div>
 	);
 }
