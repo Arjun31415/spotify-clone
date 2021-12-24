@@ -9,7 +9,7 @@ import {
 	validateEmail,
 	validatePassword,
 	validateProfileName,
-} from "../utils/Validator.ts";
+} from "../utils/Validator";
 
 import CrossMark from "./figures/CrossMark";
 import Link from "next/link";
