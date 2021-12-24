@@ -2,6 +2,7 @@ import { useAppDispatch, useAppSelector } from "../hooks/hooks";
 // import spotifyApi from "../lib/spotifyAPI";
 import { useEffect, useState } from "react";
 
+import LeftPane from "../components/LeftPane.tsx";
 import Router from "next/router";
 import { auth } from "../lib/firebase";
 import { useRouter } from "next/router";
@@ -65,13 +66,14 @@ export default function WebPlayer() {
 
 	return (
 		<div>
-			<h1>Hi{user?.displayName}</h1>
+			<LeftPane home={true} search={true} />
+			{/* <h1>Hi{user?.displayName}</h1>
 			<button onClick={getPlaylists}>Load spotify URL</button>
 			{playlists.items?.map((playlist) => (
 				<div key={playlist["id"]} id={playlist["id"]}>
 					{playlist["name"]}
 				</div>
-			))}
+			))} */}
 		</div>
 	);
 }
