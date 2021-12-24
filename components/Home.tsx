@@ -69,7 +69,7 @@ function Home() {
 					</button>
 				</div>
 			</div>
-			<Footer />
+			<Footer classes="" />
 		</>
 	);
 }

@@ -25,9 +25,7 @@ function Navbar() {
 					</Link>
 					<Link href="/download">
 						<a>
-							<li className="hover:text-spotifyGreen">
-								Download
-							</li>
+							<li className="hover:text-spotifyGreen">Download</li>
 						</a>
 					</Link>
 					<li>|</li>

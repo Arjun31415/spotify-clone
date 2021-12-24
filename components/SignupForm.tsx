@@ -4,7 +4,6 @@ import DatePicker, {
 	utils,
 } from "@amir04lm26/react-modern-calendar-date-picker";
 import React, { createRef, useEffect, useRef, useState } from "react";
-import { createUserWithEmailAndPassword } from "@firebase/auth";
 import {
 	validateDOB,
 	validateEmail,
@@ -16,6 +15,7 @@ import CrossMark from "./figures/CrossMark";
 import Link from "next/link";
 import ReCAPTCHA from "react-google-recaptcha";
 import { auth } from "../lib/firebase";
+import { createUserWithEmailAndPassword } from "@firebase/auth";
 import { updateProfile } from "firebase/auth";
 import { useRouter } from "next/router";
 
@@ -36,7 +36,7 @@ export default function SignupForm({ styles }) {
 	const [checkProfileName, setCheckProfileName] = useState(-1);
 	const [checkDOB, setCheckDOB] = useState(-1);
 
-	let captchaErrorElement;
+	let captchaErrorElement: HTMLElement;
 
 	if (process.browser) {
 		captchaErrorElement = document.getElementById("captchaError");
@@ -162,7 +162,7 @@ export default function SignupForm({ styles }) {
 		};
 	}, [dob, checkDOB]);
 
-	function signUp(e) {
+	function signUp(e: { preventDefault: () => void }) {
 		e.preventDefault();
 		const recaptchaValue = recaptchaRef.current.getValue();
 		console.log(recaptchaValue);
@@ -230,7 +230,7 @@ export default function SignupForm({ styles }) {
 			});
 	}
 
-	const onReCAPTCHAChange = async (captchaCode) => {
+	const onReCAPTCHAChange = async (captchaCode: any) => {
 		// If the reCAPTCHA code is null or undefined indicating that
 		// the reCAPTCHA was expired then return early
 		if (!captchaCode) {

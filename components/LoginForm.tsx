@@ -1,9 +1,10 @@
+import React, { useEffect, useRef, useState } from "react";
+import { validateEmail, validatePassword } from "../utils/Validator";
+
 import CrossMark from "./figures/CrossMark";
 import Link from "next/link";
-import React, { useEffect, useRef, useState } from "react";
-import { validateEmail, validatePassword } from "../utils/Validator.ts";
-import { signInWithEmailAndPassword } from "@firebase/auth";
 import { auth } from "../lib/firebase";
+import { signInWithEmailAndPassword } from "@firebase/auth";
 import { useRouter } from "next/router";
 
 export default function LoginForm({ styles }) {
