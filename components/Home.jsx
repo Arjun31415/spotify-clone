@@ -2,9 +2,11 @@ import React, { useState } from "react";
 
 import Footer from "./Footer";
 import Navbar from "./Navbar";
+import { useRouter } from "next/router";
 
 function Home() {
 	const [clicked, setClicked] = useState(false);
+	const router = useRouter();
 	return (
 		<>
 			<Navbar />
@@ -32,7 +34,10 @@ function Home() {
 					   active:border-white active:border-4 border-4 " +
 						(clicked === true ? "border-white" : "border-transparent")
 					}
-					onClick={() => setClicked(true)}
+					onClick={() => {
+						setClicked(true);
+						router.push("/signup");
+					}}
 				>
 					GET SPOTIFY FREE
 				</button>
