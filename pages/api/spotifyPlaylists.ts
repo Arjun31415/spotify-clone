@@ -20,7 +20,6 @@ export default function handler(
 		function (err: any) {
 			console.log("Something went wrong!");
 			console.log(err);
-			// console.log(err["body"]["error"]["status"]);
 			cookies.set("isAuthenticated", "0");
 			try {
 				return res.status(401).json({

@@ -11,22 +11,7 @@ export default function handler(
 	req: NextApiRequest,
 	res: NextApiResponse<ResponseData>
 ) {
-	const { body, method } = req;
-	// console.log("body of request");
-	// console.log(body);
-	// console.log("request method");
-	// console.log(method);
-	// console.log(req.query);
-	// res.status(200).json([{ title: "GeeksforGeeks" }]);
-
-	var scopes = [
-			"user-read-private",
-			"user-read-email",
-			"playlist-read-private",
-			"playlist-modify-public",
-		],
-		state = req.query["state"];
-	// console.log("code authing");
+	var state = req.query["state"];
 	var code = req.query["code"];
 	console.assert(typeof state === "string");
 	// console.log(typeof state);
