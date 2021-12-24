@@ -3,7 +3,6 @@ var SpotifyWebApi = require("spotify-web-api-node");
 import type { NextApiRequest, NextApiResponse } from "next";
 
 import { spotifyApi } from "./spotifyAPI";
-import { useState } from "react";
 
 type ResponseData = {};
 
@@ -23,7 +22,22 @@ export default function handler(
 			// Set the access token on the API object to use it in later calls
 			spotifyApi.setAccessToken(data.body["access_token"]);
 			spotifyApi.setRefreshToken(data.body["refresh_token"]);
-			console.log("redirecting");
+			console.log("getting me\n");
+
+			spotifyApi.getMe().then(
+				function (data: { body: any }) {
+					console.log("getting me\n");
+
+					console.log(
+						"Some information about the authenticated user",
+						data.body
+					);
+				},
+				function (err: any) {
+					console.log("ERERERERER");
+					console.log("Something went wrong!", err);
+				}
+			);
 
 			res.statusCode = 201;
 			return res.redirect(308, state);

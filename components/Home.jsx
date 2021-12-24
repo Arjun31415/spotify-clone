@@ -41,6 +41,33 @@ function Home() {
 				>
 					GET SPOTIFY FREE
 				</button>
+				<div className="flex flex-col mt-auto mb-auto ">
+					<h1
+						className="font-sans text-5xl font-black 
+						max-w-2xl tracking-tighter leading-none mb-6"
+					>
+						Looking for music?
+					</h1>
+					<p className="font-sans text-2xl text-center">
+						Start listening to the best new releases.
+					</p>
+					<button
+						className={
+							"mt-10 mr-auto ml-auto text-center bg-spotifyGreen text-spotifyBlue \
+					px-5 py-3 hover:bg-spotifyLightGreen1 hover:scale-105 \
+					font-sans font-semibold rounded-full \
+					active:bg-spotifyLightGreen2 \
+					active:border-white active:border-4 border-4 " +
+							(clicked === true ? "border-white" : "border-transparent")
+						}
+						onClick={() => {
+							setClicked(true);
+							router.push("/webplayer");
+						}}
+					>
+						OPEN WEBPLAYER
+					</button>
+				</div>
 			</div>
 			<Footer />
 		</>
