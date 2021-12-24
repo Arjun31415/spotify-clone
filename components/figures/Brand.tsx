@@ -1,7 +1,10 @@
 import Link from "next/link";
 import React from "react";
 
-const MyBrand = React.forwardRef(function myBrand({ props }, ref) {
+const MyBrand = React.forwardRef(function myBrand(
+	{ textColor, width, height },
+	ref
+) {
 	return (
 		<svg
 			viewBox="0 0 63 20"
@@ -9,10 +12,10 @@ const MyBrand = React.forwardRef(function myBrand({ props }, ref) {
 			preserveAspectRatio="xMidYMin meet"
 			className={
 				`fill-current cursor-pointer hover:text-spotifyGreen ` +
-				(props.textColor ? props.textColor : ` text-white`)
+				(textColor ? textColor : ` text-white`)
 			}
-			width={props.width}
-			height={props.height}
+			width={width}
+			height={height}
 			ref={ref}
 		>
 			<g fillRule="evenodd">
@@ -22,10 +25,12 @@ const MyBrand = React.forwardRef(function myBrand({ props }, ref) {
 	);
 });
 
-const Brand = (props) => (
+const Brand = (
+	props: JSX.IntrinsicAttributes & React.RefAttributes<unknown>
+) => (
 	<Link href={"/"}>
 		<a>
-			<MyBrand props={props} />
+			<MyBrand {...props} />
 		</a>
 	</Link>
 );

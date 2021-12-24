@@ -66,7 +66,8 @@ export default function WebPlayer() {
 
 	return (
 		<div>
-			<LeftPane home={true} search={true} />
+			{/* set search={true} library={true} for the respective pages*/}
+			<LeftPane home={true} />
 			{/* <h1>Hi{user?.displayName}</h1>
 			<button onClick={getPlaylists}>Load spotify URL</button>
 			{playlists.items?.map((playlist) => (
