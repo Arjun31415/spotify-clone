@@ -23,7 +23,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "components/figures/Brand.tsx"  ],
   "exclude": [
     "node_modules"
   ]
