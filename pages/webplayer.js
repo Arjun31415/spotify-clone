@@ -69,8 +69,12 @@ export default function WebPlayer() {
 		<div>
 			{/* set search={true} library={true} for the respective pages*/}
 			<div className="flex flex-row">
-				<LeftPane home={true} />
-				<WebPlayerMain />
+				<div className="w-2/12">
+					<LeftPane home={true} />
+				</div>
+				<div className="flex-auto">
+					<WebPlayerMain />
+				</div>
 			</div>
 			{/* <h1>Hi{user?.displayName}</h1>
 			<button onClick={getPlaylists}>Load spotify URL</button>

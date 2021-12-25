@@ -10,7 +10,12 @@
     "@amir04lm26/react-modern-calendar-date-picker": "^1.0.01",
     "@babel/core": "^7.15.8",
     "@babel/plugin-syntax-jsx": "^7.14.5",
+    "@emotion/react": "^11.7.1",
+    "@emotion/styled": "^11.6.0",
     "@firebase/auth": "^0.19.4",
+    "@mui/icons-material": "^5.2.5",
+    "@mui/material": "^5.2.5",
+    "@mui/styled-engine-sc": "^5.1.0",
     "@reduxjs/toolkit": "^1.7.1",
     "ansi-regex": "5.0.1",
     "cookies": "^0.8.0",
@@ -25,6 +30,7 @@
     "react-redux": "^7.2.6",
     "redux": "^4.1.2",
     "spotify-web-api-node": "^5.0.2",
+    "styled-components": "^5.3.3",
     "xhr2": "^0.2.1"
   },
   "devDependencies": {
