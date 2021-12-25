@@ -23,7 +23,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-, "components/figures/Brand.tsx"  ],
+, "components/figures/Brand.tsx", "public/dropDown.js"  ],
   "exclude": [
     "node_modules"
   ]

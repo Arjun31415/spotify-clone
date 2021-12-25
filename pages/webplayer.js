@@ -73,7 +73,7 @@ export default function WebPlayer() {
 					<LeftPane home={true} />
 				</div>
 				<div className="flex-auto">
-					<WebPlayerMain />
+					<WebPlayerMain profileName={user?.displayName} />
 				</div>
 			</div>
 			{/* <h1>Hi{user?.displayName}</h1>
