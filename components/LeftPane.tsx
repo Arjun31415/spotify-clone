@@ -36,6 +36,16 @@ function LeftPane({ home, search, library }) {
 					</a>
 				</Link>
 			</div>
+			<div>
+				<hr
+					style={{
+						backgroundColor: "#282828",
+						border: "1px solid #282828",
+					}}
+					className="mr-3"
+				></hr>
+			</div>
+			<div className="mt-2">duisfhgifduighidfhg</div>
 		</div>
 	);
 }
