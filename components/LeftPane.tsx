@@ -6,7 +6,8 @@ import LibraryFig from "./figures/LibraryFig";
 import Link from "next/link";
 import SearchFig from "./figures/SearchFig";
 
-function LeftPane({ home, search, library }) {
+function LeftPane({ home, search, library, aboutMe }) {
+	console.log(aboutMe);
 	return (
 		<div className="bg-black flex flex-col text-white pl-3">
 			<div className="mb-6 mt-6">

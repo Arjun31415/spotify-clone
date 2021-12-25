@@ -2,12 +2,32 @@ import { useAppDispatch, useAppSelector } from "../hooks/hooks";
 // import spotifyApi from "../lib/spotifyAPI";
 import { useEffect, useState } from "react";
 
+import { GetStaticProps } from "next";
 import LeftPane from "../components/LeftPane";
 import Router from "next/router";
 import WebPlayerMain from "../components/WebPlayerMain";
 import { auth } from "../lib/firebase";
+import { spotifyApi } from "./api/spotifyAPI";
 import { useRouter } from "next/router";
 
+export const getStaticProps = async (context) => {
+	// ...
+	console.log("Hiiiii\n\n");
+	let aboutUser;
+
+	spotifyApi.getMe().then(
+		function (data) {
+			console.log("Some information about the authenticated user", data.body);
+			aboutUser = data.body;
+		},
+		function (err) {
+			console.log("Something went wrong!", err);
+		}
+	);
+	return {
+		props: {}, // will be passed to the page component as props
+	};
+};
 export default function WebPlayer() {
 	const [playlists, setPlaylists] = useState([]);
 
