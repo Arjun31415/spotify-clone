@@ -42,7 +42,10 @@ export async function middleware(req: NextRequest, ev: NextFetchEvent) {
 		// response.cookie("isAuthenticated", "0");
 		return response;
 	}
-	if (req["url"] == "/webplayer") {
+	if (
+		req["url"] == "/webplayer" ||
+		("isAuthenticated" in req.cookies && req.cookies["isAuthenticated"] === "0")
+	) {
 		const authURL = await spotifyAuthUrl();
 		console.log(req.cookies);
 		return NextResponse.redirect(authURL["url"]).cookie("isAuthenticated", "1");

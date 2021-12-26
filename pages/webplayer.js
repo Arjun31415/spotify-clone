@@ -10,60 +10,109 @@ import { auth } from "../lib/firebase";
 import { spotifyApi } from "./api/spotifyAPI";
 import { useRouter } from "next/router";
 
-export const getStaticProps = async (context) => {
-	// ...
-	console.log("Hiiiii\n\n");
-	let aboutUser;
-
-	spotifyApi.getMe().then(
-		function (data) {
-			console.log("Some information about the authenticated user", data.body);
-			aboutUser = data.body;
-		},
-		function (err) {
-			console.log("Something went wrong!", err);
+const getPlaylists = async (baseUrl) => {
+	try {
+		const response = await fetch(baseUrl + "/api/spotifyPlaylists", {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+			},
+		});
+		console.log(response);
+		if (response.ok) {
+			// If the response is ok than show the success
+			console.log("Playlists received");
+			// setPlaylists(await response.json());
+			return await response.json();
 		}
-	);
+		if (response.status >= 400 && response.status < 500) {
+			console.log("error");
+			return { error: "true" };
+		}
+	} catch (error) {
+		console.log("error occurred");
+		console.log(
+			error?.message ||
+				"Something went wrong. Please contact admin for bug report "
+		);
+		return { error: "true" };
+	} finally {
+		// idk man
+	}
+};
+const spotifyAuthUrl = async () => {
+	try {
+		const response = await fetch("http://localhost:3000/api/spotifyAPI", {
+			method: "POST",
+			body: JSON.stringify({ nextURL: "/webplayer" }),
+			headers: {
+				"Content-Type": "application/json",
+			},
+		});
+		const authURL = await response.json();
+		if (response.ok) {
+			// If the response is ok than show the success
+			console.log("Url received");
+			console.log(authURL);
+			return authURL;
+		}
+	} catch (error) {
+		console.log("error occurred");
+		console.log(error);
+		console.log(
+			error?.message ||
+				"Something went wrong. Please contact admin for bug report "
+		);
+	} finally {
+		// idk man
+	}
+};
+export const getServerSideProps = async (ctx) => {
+	// ...
+	const req = ctx.req;
+	const protocol = req.headers["x-forwarded-proto"] || "http";
+	const baseUrl = req ? `${protocol}://${req.headers.host}` : "";
+	let aboutMe;
+	let playlists = await getPlaylists(baseUrl);
+
+	console.log("Hiiiii\n\n");
+	const authURL = await spotifyAuthUrl();
+	console.log("Get server props");
+	console.log("Playlists");
+	console.log(playlists);
+	if ("error" in playlists)
+		return {
+			redirect: {
+				permanent: false,
+				destination: authURL["url"],
+			},
+			props: {},
+		};
+	// aboutMe = await spotifyApi.getMe().then(
+	// 	function (data) {
+	// 		console.log("getting me\n");
+
+	// 		// console.log("Some information about the authenticated user", data.body);
+	// 		aboutMe = data.body;
+	// 		return aboutMe;
+	// 	},
+	// 	function (err) {
+	// 		console.log("ERERERERER");
+	// 		console.log("Something went wrong!", err);
+	// 	}
+	// );
+	// console.log(aboutMe);
 	return {
-		props: {}, // will be passed to the page component as props
+		props: { playlists },
 	};
 };
-export default function WebPlayer() {
-	const [playlists, setPlaylists] = useState([]);
-
-	const getPlaylists = async () => {
-		try {
-			const response = await fetch("/api/spotifyPlaylists", {
-				method: "GET",
-				headers: {
-					"Content-Type": "application/json",
-				},
-			});
-			console.log(response);
-			if (response.ok) {
-				// If the response is ok than show the success
-				console.log("Playlists received");
-				setPlaylists(await response.json());
-			}
-			if (response.status >= 400 && response.status < 500) {
-				console.log("error");
-				Router.reload(window.location.pathname);
-			}
-		} catch (error) {
-			alert(
-				error?.message ||
-					"Something went wrong. Please contact admin for bug report "
-			);
-		} finally {
-			// idk man
-		}
-	};
+export default function WebPlayer({ playlists, aboutMe }) {
 	const dispatch = useAppDispatch();
 	const user = useAppSelector((state) => state.user.user);
 	useEffect(() => {
 		// will only run once when app component loads.
 		auth.onAuthStateChanged((authUser) => {
-			console.log("User: ", authUser);
+			// console.log("User: ", authUser);
 			// console.log(user);
 
 			if (authUser) {

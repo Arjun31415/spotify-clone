@@ -24,21 +24,6 @@ export default function handler(
 			spotifyApi.setRefreshToken(data.body["refresh_token"]);
 			console.log("getting me\n");
 
-			spotifyApi.getMe().then(
-				function (data: { body: any }) {
-					console.log("getting me\n");
-
-					console.log(
-						"Some information about the authenticated user",
-						data.body
-					);
-				},
-				function (err: any) {
-					console.log("ERERERERER");
-					console.log("Something went wrong!", err);
-				}
-			);
-
 			res.statusCode = 201;
 			return res.redirect(308, state);
 
