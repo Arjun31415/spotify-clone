@@ -1,9 +1,13 @@
 import Link from "next/link";
 import React from "react";
-
+interface Props {
+	textColor: string;
+	width?: string;
+	height: string;
+}
 const MyBrand = React.forwardRef(function myBrand(
-	{ textColor, width, height },
-	ref
+	{ textColor, width, height }: Props,
+	ref: any
 ) {
 	return (
 		<svg
@@ -25,9 +29,7 @@ const MyBrand = React.forwardRef(function myBrand(
 	);
 });
 
-const Brand = (
-	props: JSX.IntrinsicAttributes & React.RefAttributes<unknown>
-) => (
+const Brand = (props: Props) => (
 	<Link href={"/"}>
 		<a>
 			<MyBrand {...props} />

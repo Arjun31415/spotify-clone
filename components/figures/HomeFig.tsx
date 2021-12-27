@@ -2,7 +2,13 @@ import React, { useState } from "react";
 
 import Link from "next/link";
 
-const MyHomeFig = React.forwardRef(function HomeFig1(props, ref) {
+interface Props {
+	isActive: Boolean;
+	textColor?: string;
+	hoverColor?: string;
+	color: string;
+}
+const MyHomeFig = React.forwardRef(function HomeFig1(props: Props, ref: any) {
 	const [homeHover, setHomeHover] = useState(false);
 
 	return (
@@ -37,9 +43,7 @@ const MyHomeFig = React.forwardRef(function HomeFig1(props, ref) {
 		</>
 	);
 });
-const HomeFig = (
-	props: JSX.IntrinsicAttributes & React.RefAttributes<unknown>
-) => (
+const HomeFig = (props: Props) => (
 	<Link href={"/webplayer"}>
 		<a>
 			<MyHomeFig {...props} />
