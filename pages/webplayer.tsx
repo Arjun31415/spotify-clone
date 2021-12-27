@@ -8,6 +8,7 @@ import WebPlayerMain from "../components/WebPlayerMain";
 import { aboutMe } from "./api/spotify/aboutMe";
 import { auth } from "../lib/firebase";
 import { getPlaylists } from "./api/spotify/playlists";
+import { useRouter } from "next/router";
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
 	// ...
@@ -41,6 +42,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 export default function WebPlayer({ playlists, me }) {
 	const dispatch = useAppDispatch();
 	const user = useAppSelector((state) => state.user.user);
+	const router = useRouter();
 	useEffect(() => {
 		// will only run once when app component loads.
 		auth.onAuthStateChanged((authUser) => {
@@ -56,6 +58,7 @@ export default function WebPlayer({ playlists, me }) {
 				});
 			} else {
 				//  the user is logged out
+				router.push("/login");
 				dispatch({
 					type: "SET_USER",
 					user: null,

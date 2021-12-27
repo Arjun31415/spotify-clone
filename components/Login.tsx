@@ -11,7 +11,7 @@ export default function Login() {
 					<Brand textColor="text-black" height="6vh" />
 				</div>
 				<p className={`${styles.mt3} text-3xl font-semibold`}>
-					To continue, Login to Spotify.
+					To continue, Login to Spotify-Clone.
 				</p>
 				{/* TODO: Maybe facebook Login */}
 				<span className={`${styles.divider}`}>or</span>
