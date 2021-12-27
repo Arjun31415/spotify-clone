@@ -9,34 +9,6 @@ import { aboutMe } from "./api/spotify/aboutMe";
 import { auth } from "../lib/firebase";
 import { getPlaylists } from "./api/spotify/playlists";
 
-const spotifyAuthUrl = async (baseUrl) => {
-	try {
-		const response = await fetch(baseUrl + "/api/spotifyAPI", {
-			method: "POST",
-			body: JSON.stringify({ nextURL: "/webplayer" }),
-			headers: {
-				"Content-Type": "application/json",
-			},
-		});
-		const authURL = await response.json();
-		if (response.ok) {
-			// If the response is ok than show the success
-			console.log("Url received");
-			console.log(authURL);
-			return authURL;
-		}
-	} catch (error) {
-		console.log("error occurred");
-		console.log(error);
-		console.log(
-			error?.message ||
-				"Something went wrong. Please contact admin for bug report "
-		);
-	} finally {
-		// idk man
-	}
-};
-
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
 	// ...
 	const req = ctx.req;
