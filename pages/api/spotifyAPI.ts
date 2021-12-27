@@ -21,6 +21,9 @@ export default function handler(
 			"playlist-modify-public",
 		],
 		state = body["nextURL"];
+	const protocol = req.headers["x-forwarded-proto"] || "http";
+	const baseUrl = req ? `${protocol}://${req.headers.host}` : "";
+	spotifyApi.setRedirectURI(baseUrl + "/api/spotifyAuth");
 	var authorizeURL: String = spotifyApi.createAuthorizeURL(scopes, state);
 	// console.log(authorizeURL);
 	res.json({ url: authorizeURL });
