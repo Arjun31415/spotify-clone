@@ -4,11 +4,14 @@ import { NextResponse } from "next/server";
 import { getCookieParser } from "next/dist/server/api-utils";
 
 export async function middleware(req: NextRequest, ev: NextFetchEvent) {
-	let response = NextResponse.next();
+	let res = NextResponse.next();
+	const protocol = req.headers["x-forwarded-proto"] || "http";
+	const baseUrl = req ? `${protocol}://${req.headers.get("host")}` : "";
 	console.log("Middleware\n\n\n\n\n");
+	// console.log(process.env.REDIRECT_LINK);
 	const spotifyAuthUrl = async () => {
 		try {
-			const response = await fetch("http://localhost:3000/api/spotifyAPI", {
+			const response = await fetch(baseUrl + "/api/spotifyAPI", {
 				method: "POST",
 				body: JSON.stringify({ nextURL: "/webplayer" }),
 				headers: {
@@ -40,7 +43,7 @@ export async function middleware(req: NextRequest, ev: NextFetchEvent) {
 	) {
 		console.log("Authentication is done blyat");
 		// response.cookie("isAuthenticated", "0");
-		return response;
+		return res;
 	} else if (req.cookies["isAuthenticated"] === "2") {
 		console.log("Doing authentication cyka");
 	}
@@ -52,5 +55,5 @@ export async function middleware(req: NextRequest, ev: NextFetchEvent) {
 		console.log(req.cookies);
 		return NextResponse.redirect(authURL["url"]).cookie("isAuthenticated", "2");
 	}
-	return response;
+	return res;
 }
