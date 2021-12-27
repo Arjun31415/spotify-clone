@@ -53,6 +53,7 @@ export async function middleware(req: NextRequest, ev: NextFetchEvent) {
 	) {
 		const authURL = await spotifyAuthUrl();
 		console.log(req.cookies);
+		console.log("redirecting from middleware ");
 		return NextResponse.redirect(authURL["url"]).cookie("isAuthenticated", "2");
 	}
 	return res;
