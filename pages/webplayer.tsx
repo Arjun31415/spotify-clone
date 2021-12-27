@@ -65,7 +65,7 @@ export default function WebPlayer({ playlists, me }) {
 				});
 			}
 		});
-	}, [dispatch]);
+	}, [dispatch, router]);
 
 	return (
 		<div>

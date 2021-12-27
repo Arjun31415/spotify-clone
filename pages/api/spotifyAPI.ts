@@ -5,7 +5,6 @@ type ResponseData = { url: String };
 var spotifyApi = new SpotifyWebApi({
 	clientId: "144e5d2ce1dd4cd2a01c21516acd5fd0",
 	clientSecret: process.env.CLIENT_SECRET,
-	redirectUri: process.env.REDIRECT_LINK,
 });
 
 export default function handler(
@@ -23,10 +22,11 @@ export default function handler(
 		state = body["nextURL"];
 	const protocol = req.headers["x-forwarded-proto"] || "http";
 	const baseUrl = req ? `${protocol}://${req.headers.host}` : "";
-	console.log("redirectUri: ", baseUrl + "/api/spotifyAuth");
-	spotifyApi.setRedirectURI(baseUrl + "/api/spotifyAuth");
+	console.log("redirectUri: ", baseUrl + "/api/spotifyAuth/");
+	spotifyApi.setRedirectURI(baseUrl + "/api/spotifyAuth/");
+	console.log(spotifyApi.getRedirectURI());
 	var authorizeURL: String = spotifyApi.createAuthorizeURL(scopes, state);
-	// console.log(authorizeURL);
+	console.log(authorizeURL);
 	res.json({ url: authorizeURL });
 }
 export { spotifyApi };
