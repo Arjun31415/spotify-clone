@@ -16,7 +16,9 @@ interface Props {
 }
 function LeftPane({ home, search, library, playlists }: Props) {
 	return (
-		<div className={`bg-black flex flex-col pl-3 ${styles.textGray}`}>
+		<div
+			className={`bg-black flex flex-col pl-3 ${styles.textGray} ${styles.hFull}`}
+		>
 			<div className="mb-6 mt-6">
 				<Brand textColor="text-white" height="4vh" />
 			</div>

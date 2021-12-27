@@ -12,7 +12,7 @@ function WebPlayerMain({ profileName }) {
 	const options = ["logout", "two", "three"];
 	// const defaultOption = options[0];
 	return (
-		<div className={`${styles.bgGrayGradient} h-64 flex`}>
+		<div className={`${styles.bgGrayGradient} ${styles.hFull} flex`}>
 			<div className={`flex flex-row ml-4 container ${styles.wrapper}`}>
 				<button
 					className={`mt-3 mr-2 bg-black text-white
