@@ -36,6 +36,7 @@ export async function middleware(req: NextRequest, ev: NextFetchEvent) {
 			// idk man
 		}
 	};
+	console.log("middleware cookies");
 	console.log(req.cookies);
 	if (
 		"isAuthenticated" in req.cookies &&
