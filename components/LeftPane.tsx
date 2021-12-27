@@ -4,12 +4,19 @@ import Brand from "./figures/Brand";
 import HomeFig from "./figures/HomeFig";
 import LibraryFig from "./figures/LibraryFig";
 import Link from "next/link";
+import type { PlayLists } from "../pages/api/spotify/playlists";
 import SearchFig from "./figures/SearchFig";
+import styles from "./WebPlayerMain.module.css";
 
-function LeftPane({ home, search, library, aboutMe }) {
-	console.log(aboutMe);
+interface Props {
+	home?: boolean;
+	search?: boolean;
+	library?: boolean;
+	playlists: PlayLists;
+}
+function LeftPane({ home, search, library, playlists }: Props) {
 	return (
-		<div className="bg-black flex flex-col text-white pl-3">
+		<div className={`bg-black flex flex-col pl-3 ${styles.textGray}`}>
 			<div className="mb-6 mt-6">
 				<Brand textColor="text-white" height="4vh" />
 			</div>
@@ -43,10 +50,16 @@ function LeftPane({ home, search, library, aboutMe }) {
 						backgroundColor: "#282828",
 						border: "1px solid #282828",
 					}}
-					className="mr-3"
+					className="mr-3 mb-3"
 				></hr>
 			</div>
-			<div className="mt-2">duisfhgifduighidfhg</div>
+			{playlists.items.map((playlist) => {
+				return (
+					<div key={playlist.id} id={playlist.id} className={`mt-1 mb-2 `}>
+						{playlist.name}
+					</div>
+				);
+			})}
 		</div>
 	);
 }

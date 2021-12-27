@@ -2,6 +2,7 @@ var SpotifyWebApi = require("spotify-web-api-node");
 
 import type { NextApiRequest, NextApiResponse } from "next";
 
+import Cookies from "cookies";
 import { spotifyApi } from "./spotifyAPI";
 
 type ResponseData = {};
@@ -13,6 +14,8 @@ export default function handler(
 	var state = req.query["state"];
 	var code = req.query["code"];
 	console.assert(typeof state === "string");
+	const cookies = new Cookies(req, res);
+
 	// console.log(typeof state);
 	spotifyApi.authorizationCodeGrant(code).then(
 		function (data: { body: { [x: string]: any } }) {
@@ -22,7 +25,8 @@ export default function handler(
 			// Set the access token on the API object to use it in later calls
 			spotifyApi.setAccessToken(data.body["access_token"]);
 			spotifyApi.setRefreshToken(data.body["refresh_token"]);
-			console.log("getting me\n");
+			console.log(cookies.get("isAuthenticated"));
+			cookies.set("isAuthenticated", "1");
 
 			res.statusCode = 201;
 			return res.redirect(308, state);
@@ -32,7 +36,7 @@ export default function handler(
 
 		function (err: string) {
 			console.log("Something went wrong!", err);
-			res.status(500).json({ error: err });
+			return res.status(500).json({ error: err });
 		}
 	);
 }

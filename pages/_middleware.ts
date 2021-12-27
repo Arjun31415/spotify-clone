@@ -33,7 +33,7 @@ export async function middleware(req: NextRequest, ev: NextFetchEvent) {
 			// idk man
 		}
 	};
-	// console.log(req["url"]);
+	console.log(req.cookies);
 	if (
 		"isAuthenticated" in req.cookies &&
 		req.cookies["isAuthenticated"] === "1"
@@ -41,6 +41,8 @@ export async function middleware(req: NextRequest, ev: NextFetchEvent) {
 		console.log("Authentication is done blyat");
 		// response.cookie("isAuthenticated", "0");
 		return response;
+	} else if (req.cookies["isAuthenticated"] === "2") {
+		console.log("Doing authentication cyka");
 	}
 	if (
 		req["url"] == "/webplayer" ||
@@ -48,7 +50,7 @@ export async function middleware(req: NextRequest, ev: NextFetchEvent) {
 	) {
 		const authURL = await spotifyAuthUrl();
 		console.log(req.cookies);
-		return NextResponse.redirect(authURL["url"]).cookie("isAuthenticated", "1");
+		return NextResponse.redirect(authURL["url"]).cookie("isAuthenticated", "2");
 	}
 	return response;
 }

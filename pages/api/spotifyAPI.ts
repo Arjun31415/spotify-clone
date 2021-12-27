@@ -26,3 +26,32 @@ export default function handler(
 	res.json({ url: authorizeURL });
 }
 export { spotifyApi };
+
+const spotifyAuthUrl = async (baseUrl: string) => {
+	try {
+		const response = await fetch(baseUrl + "/api/spotifyAPI", {
+			method: "POST",
+			body: JSON.stringify({ nextURL: "/webplayer" }),
+			headers: {
+				"Content-Type": "application/json",
+			},
+		});
+		const authURL = await response.json();
+		if (response.ok) {
+			// If the response is ok than show the success
+			console.log("Url received");
+			console.log(authURL);
+			return authURL;
+		}
+	} catch (error) {
+		console.log("error occurred");
+		console.log(error);
+		console.log(
+			error?.message ||
+				"Something went wrong. Please contact admin for bug report "
+		);
+	} finally {
+		// idk man
+	}
+};
+export { spotifyAuthUrl };
