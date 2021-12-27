@@ -11,7 +11,7 @@ export default function handler(
 	req: NextApiRequest,
 	res: NextApiResponse<ResponseData>
 ) {
-	var state = req.query["state"];
+	var state: any = req.query["state"];
 	var code = req.query["code"];
 	console.assert(typeof state === "string");
 	const cookies = new Cookies(req, res);
