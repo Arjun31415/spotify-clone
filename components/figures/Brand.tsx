@@ -1,9 +1,9 @@
 import Link from "next/link";
 import React from "react";
 interface Props {
-	textColor: string;
+	textColor?: string;
 	width?: string;
-	height: string;
+	height?: string;
 }
 const MyBrand = React.forwardRef(function myBrand(
 	{ textColor, width, height }: Props,

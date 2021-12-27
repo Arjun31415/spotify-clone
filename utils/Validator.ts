@@ -1,20 +1,14 @@
 import calculate_age from "./AgeCalc";
 import { regexPattern } from "./RegexObject";
 
-export function validateEmail(email: string): {
-	value: Boolean,
-	message: string,
-} {
+export function validateEmail(email: string) {
 	if (!email || email === "")
 		return { value: true, message: "You need to enter your email" };
 	let val = regexPattern.test(email);
 	if (!val) return { value: !val, message: "It is not a valid email" };
 	return { value: false, message: "" };
 }
-export function validatePassword(password: string): {
-	value: Boolean,
-	message: string,
-} {
+export function validatePassword(password: string) {
 	if (!password || password === "")
 		return { value: true, message: "You need to provide a password " };
 	if (password.length < 6)
@@ -24,14 +18,7 @@ export function validatePassword(password: string): {
 		};
 	return { value: false, message: "" };
 }
-export function validateDOB(dob: {
-	year: number,
-	month: number,
-	day: number,
-}): {
-	value: Boolean,
-	message: string,
-} {
+export function validateDOB(dob: { year: number, month: number, day: number }) {
 	if (!dob) {
 		return { value: true, message: "Choose your date of birth." };
 	}
@@ -47,10 +34,7 @@ export function validateDOB(dob: {
 	return { value: false, message: "" };
 }
 
-export function validateProfileName(profileName: string): {
-	value: Boolean,
-	message: string,
-} {
+export function validateProfileName(profileName: string) {
 	if (!profileName) {
 		return {
 			value: true,

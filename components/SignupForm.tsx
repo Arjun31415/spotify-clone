@@ -21,8 +21,7 @@ import { useRouter } from "next/router";
 
 export default function SignupForm({ styles }) {
 	const router = useRouter();
-
-	const recaptchaRef = createRef();
+	const recaptchaRef: React.RefObject<any> = createRef();
 	// for form control
 	const [email, setEmail] = useState("");
 	const [confirmEmail, setConfirmEmail] = useState("");
@@ -213,7 +212,7 @@ export default function SignupForm({ styles }) {
 			.then((userCredential) => {
 				// Signed in
 				console.log(userCredential);
-				const user = userCredential.user;
+				const user: any = userCredential.user;
 				// update the user's profileName
 				updateProfile(user, { displayName: `${profileName}` });
 				if (userCredential) {
@@ -402,7 +401,7 @@ export default function SignupForm({ styles }) {
 					value={dob}
 					onChange={setDOB}
 					inputPlaceholder="Select Birth date"
-					maximumDate={utils().getToday()}
+					maximumDate={utils("en").getToday()}
 					shouldHighlightWeekends={false}
 				/>
 			</div>
