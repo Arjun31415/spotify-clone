@@ -18,6 +18,12 @@ export default function handler(
 			"user-read-email",
 			"playlist-read-private",
 			"playlist-modify-public",
+			"user-read-playback-state",
+			"user-modify-playback-state",
+			"user-read-currently-playing",
+			"user-library-modify",
+			"user-library-read",
+			"user-top-read",
 		],
 		state = body["nextURL"];
 	const protocol = req.headers["x-forwarded-proto"] || "http";

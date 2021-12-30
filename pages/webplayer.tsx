@@ -8,6 +8,8 @@ import WebPlayerMain from "../components/WebPlayerMain";
 import { aboutMe } from "./api/spotify/aboutMe";
 import { auth } from "../lib/firebase";
 import { getPlaylists } from "./api/spotify/playlists";
+import { getRecommendations } from "./api/spotify/recommendations";
+import { getTopArtists } from "./api/spotify/topArtists";
 import { useRouter } from "next/router";
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
@@ -18,7 +20,8 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 	const baseUrl = req ? `${protocol}://${req.headers.host}` : "";
 	let playlists = await getPlaylists(baseUrl);
 	let me = await aboutMe(baseUrl);
-
+	let recommendations = await getRecommendations(baseUrl);
+	let topArtists = await getTopArtists(baseUrl);
 	// console.log(req.headers);
 
 	if ("error" in playlists) {
@@ -35,11 +38,17 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 	}
 
 	console.log(me);
+
 	return {
-		props: { playlists, me },
+		props: { playlists, me, recommendations, topArtists },
 	};
 };
-export default function WebPlayer({ playlists, me }) {
+export default function WebPlayer({
+	playlists,
+	me,
+	recommendations: rec,
+	topArtists: ta,
+}) {
 	const dispatch = useAppDispatch();
 	const user = useAppSelector((state) => state.user.user);
 	const router = useRouter();
@@ -75,7 +84,11 @@ export default function WebPlayer({ playlists, me }) {
 					<LeftPane home={true} playlists={playlists} />
 				</div>
 				<div className="flex-auto">
-					<WebPlayerMain profileName={user?.displayName} />
+					<WebPlayerMain
+						profileName={user?.displayName}
+						recommendations={rec}
+						topArtists={ta}
+					/>
 				</div>
 			</div>
 		</div>
