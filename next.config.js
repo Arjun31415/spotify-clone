@@ -3,7 +3,7 @@
 module.exports = {
 	webpack5: true,
 	images: {
-		domains: ["i.scdn.co"],
+		domains: ["i.scdn.co", "img.icons8.com"],
 	},
 	webpack(config, options) {
 		const { dir, defaultLoaders } = options;

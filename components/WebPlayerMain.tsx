@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
-import ArrowDropDownOutlinedIcon from "@mui/icons-material/ArrowDropDownOutlined";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import Collapsible from "react-collapsible";
 import Image from "next/image";
 import Link from "next/link";
 import PermIdentityOutlinedIcon from "@mui/icons-material/PermIdentityOutlined";
-import Script from "next/script";
+import Tile from "./Tile";
 import getTimeGreetings from "../utils/timeGetter";
 import styles from "./WebPlayerMain.module.css";
 
@@ -101,16 +100,9 @@ function WebPlayerMain({ profileName, recommendations, topArtists: ta }) {
 				{getTimeGreetings()}
 			</div>
 			{/* ta is top artist or top tracks god only knows */}
-			<div className="flex">
-				{ta.map((artist, index) => (
-					<div key={artist.id} className="mr-2 ml-2">
-						<Image
-							alt="cover image"
-							src={artist.images[0].url}
-							height={100}
-							width={100}
-						></Image>
-					</div>
+			<div className="flex flex-wrap">
+				{ta.map((artist: { id: string }, index) => (
+					<Tile artist={artist} key={artist.id} />
 				))}
 			</div>
 		</div>
