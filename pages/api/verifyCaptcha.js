@@ -1,7 +1,5 @@
 // noinspection SpellCheckingInspection
-
 import fetch from "node-fetch";
-
 const sleep = () =>
 	new Promise((resolve) => {
 		setTimeout(() => {
@@ -14,7 +12,6 @@ export default async function handler(req, res) {
 	console.log(body);
 	// Extract the email and captcha code from the request body
 	const { captchaCode: captcha } = body;
-
 	if (method === "POST") {
 		// If email or captcha are missing return an error
 		if (!captcha) {
@@ -22,7 +19,6 @@ export default async function handler(req, res) {
 				message: "Unprocessable request, please provide the required fields",
 			});
 		}
-
 		try {
 			// Ping the Google recaptcha verify API to verify the captcha code you received
 			const response = await fetch(
@@ -51,7 +47,6 @@ export default async function handler(req, res) {
 				// Return 200 if everything is successful
 				return res.status(200).send("OK");
 			}
-
 			return res.status(422).json({
 				message: "Unprocessable request, Invalid captcha code",
 			});
