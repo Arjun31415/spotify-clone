@@ -5,7 +5,7 @@ type ResponseData = { url: String };
 var spotifyApi = new SpotifyWebApi({
 	clientId: "144e5d2ce1dd4cd2a01c21516acd5fd0",
 	clientSecret: process.env.CLIENT_SECRET,
-	redirectUri: "http://localhost:3000/api/spotifyAuth/",
+	// redirectUri: "http://localhost:3000/api/spotifyAuth/",
 });
 
 export default function handler(
