@@ -19,9 +19,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 	const protocol = req.headers["x-forwarded-proto"] || "http";
 	const baseUrl = req ? `${protocol}://${req.headers.host}` : "";
 	let playlists = await getPlaylists(baseUrl);
-	let me = await aboutMe(baseUrl);
-	let recommendations = await getRecommendations(baseUrl);
-	let topArtists = await getTopArtists(baseUrl);
+
 	// console.log(req.headers);
 
 	if ("error" in playlists) {
@@ -36,7 +34,9 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 			props: {},
 		};
 	}
-
+	let me = await aboutMe(baseUrl);
+	let recommendations = await getRecommendations(baseUrl);
+	let topArtists = await getTopArtists(baseUrl);
 	console.log(me);
 
 	return {
