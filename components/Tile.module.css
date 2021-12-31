@@ -93,7 +93,7 @@
 
 
 .tile__playBtn {
-    cursor: url("/cursor.svg"), pointer;
+    cursor: url("https://cdn.custom-cursor.com/db/pointer/32/Fairy_Lagoon_Gradient_Pointer.png"), default !important;
 }
 
 .tile__playBtn:hover {

@@ -1,18 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="32" height="32" viewBox="0 0 172 172"
-    style=" fill:#000000;">
+    style="fill:#000000;">
     <defs>
-        <linearGradient x1="86" y1="3.26195" x2="86" y2="170.00688" gradientUnits="userSpaceOnUse"
-            id="color-1_oI67QbuKf2Tv_gr1">
+        <linearGradient x1="86" y1="3.26195" x2="86" y2="170.00688" gradientUnits="userSpaceOnUse" id="grad1">
             <stop offset="0" stop-color="#1a6dff"></stop>
             <stop offset="1" stop-color="#c822ff"></stop>
         </linearGradient>
     </defs>
-    <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter"
+    <g fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter"
         stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none"
         font-size="none" text-anchor="none" style="mix-blend-mode: normal">
         <path d="M0,172v-172h172v172z" fill="none"></path>
-        <g fill="url(#color-1_oI67QbuKf2Tv_gr1)">
-            <g>
+        <g fill="url(#grad1)">
+            <g fill="url(#grad1)">
                 <path
                     d="M138.10055,78.63088l-100.84743,-58.09401c-1.10412,-0.63602 -2.47303,-0.59264 -3.53466,0.11203c-1.06163,0.70467 -1.6332,1.9493 -1.47585,3.21375l14.35293,115.49531c0.16485,1.32581 1.09965,2.42792 2.38079,2.80689c1.28114,0.37897 2.66508,-0.03724 3.52465,-1.06001l23.01172,-27.38126l24.51336,36.69546c1.02843,1.53945 3.1085,1.95667 4.65105,0.9329l21.91152,-14.54139c1.54258,-1.02363 1.96625,-3.10233 0.94734,-4.64803l-24.28996,-36.84462l34.17022,-10.56658c1.27647,-0.39471 2.19769,-1.50834 2.34614,-2.83616c0.14846,-1.32783 -0.50407,-2.61741 -1.66184,-3.28428zM96.98516,90.22139c-1.0097,0.31228 -1.81358,1.08152 -2.17,2.0765c-0.35642,0.99498 -0.22381,2.09968 0.35795,2.98205l24.9101,37.78491l-16.33059,10.83734l-25.13887,-37.63239c-0.5871,-0.87885 -1.55357,-1.43015 -2.60889,-1.4882c-0.06181,-0.0037 -0.12363,-0.00504 -0.1851,-0.00504c-0.99191,0.00013 -1.93307,0.43861 -2.57127,1.19795l-20.93529,24.91044l-12.57179,-101.16086l88.33141,50.88378z">
                 </path>
