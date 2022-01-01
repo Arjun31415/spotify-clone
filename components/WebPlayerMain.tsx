@@ -10,8 +10,8 @@ import getTimeGreetings from "../utils/timeGetter";
 import styles from "./WebPlayerMain.module.css";
 
 function WebPlayerMain({ profileName, recommendations, topArtists: ta }) {
-	console.log(recommendations);
-	console.log(ta);
+	// console.log(recommendations);
+	// console.log(ta);
 	function useWindowSize() {
 		// Initialize state with undefined width/height so server and client renders match
 		const [windowSize, setWindowSize] = useState({

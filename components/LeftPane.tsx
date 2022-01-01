@@ -15,6 +15,7 @@ interface Props {
 	playlists: PlayLists;
 }
 function LeftPane({ home, search, library, playlists }: Props) {
+	console.log(playlists);
 	return (
 		<div
 			className={`bg-black flex flex-col pl-3 ${styles.textGray} ${styles.hFull}`}
@@ -57,9 +58,20 @@ function LeftPane({ home, search, library, playlists }: Props) {
 			</div>
 			{playlists.items.map((playlist) => {
 				return (
-					<div key={playlist.id} id={playlist.id} className={`mt-1 mb-2 `}>
-						{playlist.name}
-					</div>
+					<Link
+						href={`/webplayer/playlist/${playlist.id}`}
+						key={`${playlist.id}`}
+					>
+						<a>
+							<div
+								key={playlist.id}
+								id={playlist.id}
+								className={`mt-1 mb-2 hover:text-white cursor-default`}
+							>
+								{playlist.name}
+							</div>
+						</a>
+					</Link>
 				);
 			})}
 		</div>
