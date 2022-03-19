@@ -27,7 +27,7 @@ export default function handler(
 			spotifyApi.setRefreshToken(data.body["refresh_token"]);
 			console.log(cookies.get("isAuthenticated"));
 			cookies.set("isAuthenticated", "1");
-
+			console.log("refreshing");
 			res.statusCode = 201;
 			return res.redirect(308, state);
 

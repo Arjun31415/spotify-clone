@@ -6,7 +6,7 @@ import Play from "./figures/Play";
 import styles from "./Tile.module.css";
 
 function Tile({ artist }) {
-	console.log(artist);
+	// console.log(artist);
 	const [isHoveringTile, setIsHoveringTile] = useState(false);
 	return (
 		<Link href="/webplayer/artist">

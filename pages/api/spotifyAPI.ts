@@ -1,6 +1,8 @@
-var SpotifyWebApi = require("spotify-web-api-node");
-
 import type { NextApiRequest, NextApiResponse } from "next";
+import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
+
+import SpotifyWebApi from "spotify-web-api-node";
+
 type ResponseData = { url: String };
 var spotifyApi = new SpotifyWebApi({
 	clientId: "144e5d2ce1dd4cd2a01c21516acd5fd0",
@@ -13,6 +15,7 @@ export default function handler(
 	res: NextApiResponse<ResponseData>
 ) {
 	const { body, method } = req;
+
 	// console.log("body of request", body);
 	var scopes = [
 			"user-read-private",
