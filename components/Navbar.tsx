@@ -5,7 +5,7 @@ import React from "react";
 function Navbar() {
 	return (
 		<div className="bg-black p-5 space-x-7 flex flex-row">
-			{/* Logo and Brand */}
+			{/* Logo and Brand */} 
 			<div className="justify-center flex flex-auto">
 				<Brand height="6vh" width="10vw" />
 			</div>
