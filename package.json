@@ -8,8 +8,8 @@
   },
   "dependencies": {
     "@amir04lm26/react-modern-calendar-date-picker": "^1.0.01",
-    "@babel/core": "^7.15.8",
-    "@babel/plugin-syntax-jsx": "^7.14.5",
+    "@babel/core": "^7.17.5",
+    "@babel/plugin-syntax-jsx": "^7.16.7",
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
     "@firebase/auth": "^0.19.7",
