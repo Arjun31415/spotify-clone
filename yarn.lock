@@ -475,7 +475,7 @@
   resolved "https://registry.yarnpkg.com/@firebase/auth-types/-/auth-types-0.11.0.tgz#b9c73c60ca07945b3bbd7a097633e5f78fa9e886"
   integrity sha512-q7Bt6cx+ySj9elQHTsKulwk3+qDezhzRBFC9zlQ1BjgMueUOnGMcvqmU0zuKlQ4RhLSH7MNAdBV2znVaoN3Vxw==
 
-"@firebase/auth@0.19.10", "@firebase/auth@^0.19.7":
+"@firebase/auth@0.19.10":
   version "0.19.10"
   resolved "https://registry.yarnpkg.com/@firebase/auth/-/auth-0.19.10.tgz#d08e7feb275da6fec84be5ba66dd0806e21e4525"
   integrity sha512-FqKHohxZriJM4S8hY0RbNwGVb+Y5INsWkWsqOaWQ9pM0hEolYruE10gKqrOHO9kauXhKbdUUGPgKHJJ9+r8eVg==
@@ -487,12 +487,32 @@
     selenium-webdriver "4.0.0-rc-1"
     tslib "^2.1.0"
 
+"@firebase/auth@^0.20.2":
+  version "0.20.4"
+  resolved "https://registry.yarnpkg.com/@firebase/auth/-/auth-0.20.4.tgz#f56d5afb658c69d424b5ae6dcb7b4fba09d75fcd"
+  integrity sha512-pWIrPB635QpPPbr7GFt2JMvSu/+Mgz/wLnMMrX3hHaPl4UlRLKdycohPSIZF+EGgc7PLx6p9fJvcw1fGEFZNXQ==
+  dependencies:
+    "@firebase/component" "0.5.16"
+    "@firebase/logger" "0.3.3"
+    "@firebase/util" "1.6.2"
+    node-fetch "2.6.7"
+    selenium-webdriver "4.1.2"
+    tslib "^2.1.0"
+
 "@firebase/component@0.5.11":
   version "0.5.11"
   resolved "https://registry.yarnpkg.com/@firebase/component/-/component-0.5.11.tgz#af00aacf3a8348d159b1fd9a91945e1b15b03aaf"
   integrity sha512-amtUrJxfJhJdjR3JzXqkHIoghJJ34o8OiSDj3gq96uKL4BRkSpmPaxi0+1r8DcDQ6bQxh3kDSoge8bRCDQCvsw==
   dependencies:
     "@firebase/util" "1.5.0"
+    tslib "^2.1.0"
+
+"@firebase/component@0.5.16":
+  version "0.5.16"
+  resolved "https://registry.yarnpkg.com/@firebase/component/-/component-0.5.16.tgz#e4fdc79b87fcb8a054dce5b78e1acae4ceb0c13f"
+  integrity sha512-/pkl77mN9PT7dTSzNu1CrvIvd+z1CdePnEl+VITaeSBs9Ko7ZVvSIlzQLbSwqksXX3bAHpxej0Mg6mVKQiRVSw==
+  dependencies:
+    "@firebase/util" "1.6.2"
     tslib "^2.1.0"
 
 "@firebase/database-compat@0.1.6":
@@ -599,6 +619,13 @@
   version "0.3.2"
   resolved "https://registry.yarnpkg.com/@firebase/logger/-/logger-0.3.2.tgz#5046ffa8295c577846d54b6ca95645a03809800e"
   integrity sha512-lzLrcJp9QBWpo40OcOM9B8QEtBw2Fk1zOZQdvv+rWS6gKmhQBCEMc4SMABQfWdjsylBcDfniD1Q+fUX1dcBTXA==
+  dependencies:
+    tslib "^2.1.0"
+
+"@firebase/logger@0.3.3":
+  version "0.3.3"
+  resolved "https://registry.yarnpkg.com/@firebase/logger/-/logger-0.3.3.tgz#0f724b1e0b166d17ac285aac5c8ec14d136beed4"
+  integrity sha512-POTJl07jOKTOevLXrTvJD/VZ0M6PnJXflbAh5J9VGkmtXPXNG6MdZ9fmRgqYhXKTaDId6AQenQ262uwgpdtO0Q==
   dependencies:
     tslib "^2.1.0"
 
@@ -723,6 +750,13 @@
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/@firebase/util/-/util-1.5.0.tgz#0b6f5eaef49e57896fe152973bbc64f8af172123"
   integrity sha512-4w4OY3YJVHV/4UBZ8OcXb8BD8I83P5n2y+FW0dHhn9OLXdYDg8bvCTA08P0nszpZqBhwutKQ4OS7c530SGjeLg==
+  dependencies:
+    tslib "^2.1.0"
+
+"@firebase/util@1.6.2":
+  version "1.6.2"
+  resolved "https://registry.yarnpkg.com/@firebase/util/-/util-1.6.2.tgz#540e3010fd3f8fad4f472e00b4ad7b7c844e0499"
+  integrity sha512-VYDqEf/+mS7n0nPj6qJDJYFtKIEfOaTtQeNDsd3x+xp8HWvrbygWOexzeGicLP1dvEzrKr3eQGcJmmmYN3TIsA==
   dependencies:
     tslib "^2.1.0"
 
@@ -4579,6 +4613,15 @@ selenium-webdriver@4.0.0-rc-1:
   dependencies:
     jszip "^3.6.0"
     rimraf "^3.0.2"
+    tmp "^0.2.1"
+    ws ">=7.4.6"
+
+selenium-webdriver@4.1.2:
+  version "4.1.2"
+  resolved "https://registry.yarnpkg.com/selenium-webdriver/-/selenium-webdriver-4.1.2.tgz#d463b4335632d2ea41a9e988e435a55dc41f5314"
+  integrity sha512-e4Ap8vQvhipgBB8Ry9zBiKGkU6kHKyNnWiavGGLKkrdW81Zv7NVMtFOL/j3yX0G8QScM7XIXijKssNd4EUxSOw==
+  dependencies:
+    jszip "^3.6.0"
     tmp "^0.2.1"
     ws ">=7.4.6"
 
