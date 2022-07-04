@@ -487,7 +487,7 @@
   resolved "https://registry.yarnpkg.com/@firebase/auth-types/-/auth-types-0.11.0.tgz#b9c73c60ca07945b3bbd7a097633e5f78fa9e886"
   integrity sha512-q7Bt6cx+ySj9elQHTsKulwk3+qDezhzRBFC9zlQ1BjgMueUOnGMcvqmU0zuKlQ4RhLSH7MNAdBV2znVaoN3Vxw==
 
-"@firebase/auth@0.20.4":
+"@firebase/auth@0.20.4", "@firebase/auth@^0.20.3":
   version "0.20.4"
   resolved "https://registry.yarnpkg.com/@firebase/auth/-/auth-0.20.4.tgz#f56d5afb658c69d424b5ae6dcb7b4fba09d75fcd"
   integrity sha512-pWIrPB635QpPPbr7GFt2JMvSu/+Mgz/wLnMMrX3hHaPl4UlRLKdycohPSIZF+EGgc7PLx6p9fJvcw1fGEFZNXQ==
@@ -497,26 +497,6 @@
     "@firebase/util" "1.6.2"
     node-fetch "2.6.7"
     selenium-webdriver "4.1.2"
-    tslib "^2.1.0"
-
-"@firebase/auth@^0.19.7":
-  version "0.19.10"
-  resolved "https://registry.yarnpkg.com/@firebase/auth/-/auth-0.19.10.tgz#d08e7feb275da6fec84be5ba66dd0806e21e4525"
-  integrity sha512-FqKHohxZriJM4S8hY0RbNwGVb+Y5INsWkWsqOaWQ9pM0hEolYruE10gKqrOHO9kauXhKbdUUGPgKHJJ9+r8eVg==
-  dependencies:
-    "@firebase/component" "0.5.11"
-    "@firebase/logger" "0.3.2"
-    "@firebase/util" "1.5.0"
-    node-fetch "2.6.7"
-    selenium-webdriver "4.0.0-rc-1"
-    tslib "^2.1.0"
-
-"@firebase/component@0.5.11":
-  version "0.5.11"
-  resolved "https://registry.yarnpkg.com/@firebase/component/-/component-0.5.11.tgz#af00aacf3a8348d159b1fd9a91945e1b15b03aaf"
-  integrity sha512-amtUrJxfJhJdjR3JzXqkHIoghJJ34o8OiSDj3gq96uKL4BRkSpmPaxi0+1r8DcDQ6bQxh3kDSoge8bRCDQCvsw==
-  dependencies:
-    "@firebase/util" "1.5.0"
     tslib "^2.1.0"
 
 "@firebase/component@0.5.16":
@@ -626,13 +606,6 @@
     "@firebase/component" "0.5.16"
     "@firebase/util" "1.6.2"
     idb "7.0.1"
-    tslib "^2.1.0"
-
-"@firebase/logger@0.3.2":
-  version "0.3.2"
-  resolved "https://registry.yarnpkg.com/@firebase/logger/-/logger-0.3.2.tgz#5046ffa8295c577846d54b6ca95645a03809800e"
-  integrity sha512-lzLrcJp9QBWpo40OcOM9B8QEtBw2Fk1zOZQdvv+rWS6gKmhQBCEMc4SMABQfWdjsylBcDfniD1Q+fUX1dcBTXA==
-  dependencies:
     tslib "^2.1.0"
 
 "@firebase/logger@0.3.3":
@@ -758,13 +731,6 @@
     "@firebase/component" "0.5.16"
     "@firebase/util" "1.6.2"
     node-fetch "2.6.7"
-    tslib "^2.1.0"
-
-"@firebase/util@1.5.0":
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/@firebase/util/-/util-1.5.0.tgz#0b6f5eaef49e57896fe152973bbc64f8af172123"
-  integrity sha512-4w4OY3YJVHV/4UBZ8OcXb8BD8I83P5n2y+FW0dHhn9OLXdYDg8bvCTA08P0nszpZqBhwutKQ4OS7c530SGjeLg==
-  dependencies:
     tslib "^2.1.0"
 
 "@firebase/util@1.6.2":
@@ -4924,16 +4890,6 @@ scheduler@^0.20.2:
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
-
-selenium-webdriver@4.0.0-rc-1:
-  version "4.0.0-rc-1"
-  resolved "https://registry.yarnpkg.com/selenium-webdriver/-/selenium-webdriver-4.0.0-rc-1.tgz#b1e7e5821298c8a071e988518dd6b759f0c41281"
-  integrity sha512-bcrwFPRax8fifRP60p7xkWDGSJJoMkPAzufMlk5K2NyLPht/YZzR2WcIk1+3gR8VOCLlst1P2PI+MXACaFzpIw==
-  dependencies:
-    jszip "^3.6.0"
-    rimraf "^3.0.2"
-    tmp "^0.2.1"
-    ws ">=7.4.6"
 
 selenium-webdriver@4.1.2:
   version "4.1.2"
