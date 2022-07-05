@@ -10,7 +10,7 @@
     "@amir04lm26/react-modern-calendar-date-picker": "^1.0.01",
     "@babel/core": "^7.18.2",
     "@babel/plugin-syntax-jsx": "^7.17.12",
-    "@emotion/react": "^11.7.1",
+    "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.6.0",
     "@firebase/auth": "^0.20.3",
     "@mui/icons-material": "^5.8.3",
