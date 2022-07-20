@@ -20,7 +20,7 @@
     "ansi-regex": "5.0.1",
     "cookies": "^0.8.0",
     "firebase": "^9.8.2",
-    "next": "^12.1.0",
+    "next": "^12.2.0",
     "next-redux-wrapper": "^7.0.5",
     "node-fetch": "^3.2.5",
     "npm": "^8.12.1",
