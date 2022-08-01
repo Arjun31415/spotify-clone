@@ -22,7 +22,7 @@
     "firebase": "^9.8.2",
     "next": "^12.2.0",
     "next-redux-wrapper": "^7.0.5",
-    "node-fetch": "^3.2.5",
+    "node-fetch": "^3.2.10",
     "npm": "^8.13.2",
     "react": "^17.0.2",
     "react-collapsible": "^2.9.0",
